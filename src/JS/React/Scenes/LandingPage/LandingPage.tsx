@@ -1,20 +1,20 @@
 import React from "react";
 import { Grid, StandardProps, Theme, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
-import { StyleClassKey } from "../../../Typescript";
+import { StyleClassKey } from "JS/Typescript";
 import { getImageSrc, ImageNames } from "JS/Helpers/Image";
 import { Map, Marker } from "pigeon-maps";
 import ReactTextRotator from "react-text-rotator";
 import clsx from "clsx";
 import { Reviews } from "./Reviews";
+import { FeaturesTabs } from "./FeaturesTabs";
 
 const useStyles = makeStyles((theme: Theme) => ({
-  root: {
+  root: {},
+  titleContainer: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-  },
-  titleContainer: {
     padding: theme.spacing(0, 4),
   },
   title: {
@@ -22,10 +22,10 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   mapContainer: {
     display: "flex",
-    width: "85vw",
+    justifyContent: "center",
   },
   divider: {
-    width: "100vw",
+    width: "100%",
     height: "300px",
     backgroundImage: `url(${getImageSrc(ImageNames.DIVIDER)})`,
     backgroundRepeat: "no-repeat",
@@ -33,9 +33,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundSize: "contain",
   },
   mobileAppSection: {
-    background: "#191919",
+    background: theme.palette.grey["900"],
     color: theme.palette.common.white,
-    padding: theme.spacing(10, 0, 0, 0),
+    padding: theme.spacing(10, 2, 10, 2),
     display: "flex",
     width: "100%",
   },
@@ -56,6 +56,19 @@ const useStyles = makeStyles((theme: Theme) => ({
     [theme.breakpoints.down(theme.navbar.breakpoint)]: {
       width: "250px",
     },
+  },
+  reviewContainer: {
+    margin: theme.spacing(2, 0),
+  },
+  featuresContainer: {
+    background: theme.palette.grey["900"],
+    padding: theme.spacing(10, 2),
+
+    // display: "flex",
+  },
+  features: {
+    color: theme.palette.common.white,
+    textAlign: "center",
   },
 }));
 
@@ -100,30 +113,38 @@ export const LandingPage = (props: LandingPageProps) => {
   return (
     <div className={classes.root} {...rest}>
       <div className={classes.titleContainer}>
-        <Typography align="left" variant="h3" className={classes.title}>
-          Discover The Amazing World with the ALTLAS-APP
-        </Typography>
-        <Typography align="left" variant="h6">
-          Download the app to view the full GPX trails
-        </Typography>
+        <div>
+          <Typography align="left" variant="h3" className={classes.title}>
+            Discover The Amazing World with the ALTLAS-APP
+          </Typography>
+          <Typography align="left" variant="h6">
+            Download the app to view the full GPX trails
+          </Typography>
 
-        <a
-          target="_blank"
-          href="https://play.google.com/store/apps/details?id=altitude.alarm.erol.apps"
-        >
-          <img
-            alt="download the Android App"
-            src={getImageSrc(ImageNames.GOOGLE_PLAY_BADGE)}
-            height="80"
-          />
-        </a>
+          <a
+            target="_blank"
+            href="https://play.google.com/store/apps/details?id=altitude.alarm.erol.apps"
+          >
+            <img
+              alt="download the Android App"
+              src={getImageSrc(ImageNames.GOOGLE_PLAY_BADGE)}
+              height="80"
+            />
+          </a>
+        </div>
       </div>
 
-      <span className={classes.mapContainer}>
-        <Map height={600} defaultCenter={[50.879, 4.6997]} defaultZoom={11}>
-          <Marker width={50} anchor={[50.879, 4.6997]} />
-        </Map>
-      </span>
+      <section className={classes.mapContainer}>
+        <div
+          style={{
+            width: "85vw",
+          }}
+        >
+          <Map height={600} defaultCenter={[50.879, 4.6997]} defaultZoom={11}>
+            <Marker width={50} anchor={[50.879, 4.6997]} />
+          </Map>
+        </div>
+      </section>
 
       <div className={classes.divider}></div>
       <Grid
@@ -185,7 +206,36 @@ export const LandingPage = (props: LandingPageProps) => {
           />
         </Grid>
       </Grid>
-      <Reviews />
+      <section className={classes.reviewContainer}>
+        <Reviews />
+      </section>
+      <section className={classes.featuresContainer}>
+        <div className={classes.features}>
+          <Typography
+            style={{
+              marginBottom: "10px",
+            }}
+            className={clsx(classes.bolderText)}
+            variant="h3"
+          >
+            Features
+          </Typography>
+
+          <Typography
+            style={{
+              maxWidth: "700px",
+              marginRight: "auto",
+              marginLeft: "auto",
+              marginBottom: "20px",
+            }}
+            variant="h6"
+          >
+            ALTLAS was designed based on input for the most important needs, by
+            people who love the nature. So it offers all the required features.
+          </Typography>
+        </div>
+        <FeaturesTabs />
+      </section>
     </div>
   );
 };

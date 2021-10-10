@@ -8,9 +8,23 @@ import { LandingPage } from "./LandingPage/LandingPage";
 import { Pricing } from "./Pricing";
 import { SearchTrails } from "./SearchTrails";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBars,
+  faChevronLeft,
+  faChevronRight,
+  faSearch,
+  faBinoculars,
+  faCompactDisc,
+} from "@fortawesome/free-solid-svg-icons";
 
-library.add(faBars);
+library.add(
+  faBars,
+  faChevronLeft,
+  faChevronRight,
+  faSearch,
+  faBinoculars,
+  faCompactDisc
+);
 
 const Root = () => {
   const { routeBuilder } = useRouting();

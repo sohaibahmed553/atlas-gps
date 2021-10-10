@@ -54,7 +54,8 @@ declare module "@material-ui/core/styles/createMuiTheme" {
 
 function createAppTheme(options: ThemeOptions) {
   const primaryMain = "#1F51FF",
-    primaryDark = "#000080";
+    primaryDark = "#000080",
+    secondaryMain = "#4b72ff";
   const theme = createMuiTheme({
     typography: {
       ...({
@@ -117,7 +118,7 @@ function createAppTheme(options: ThemeOptions) {
         "900": "#5A23D9",
       },
       secondary: {
-        main: "#a58bc7",
+        main: secondaryMain,
         contrastText: "#fff",
       },
       success: {
@@ -129,7 +130,8 @@ function createAppTheme(options: ThemeOptions) {
         contrastText: "#fff",
       },
       text: {
-        primary: "#4D4F5C",
+        // primary: "#4D4F5C",
+        primary: "#000000",
         secondary: "#a1a0ae",
       },
       background: {
@@ -148,6 +150,7 @@ function createAppTheme(options: ThemeOptions) {
         "600": "#b9babf",
         "700": "#afafaf",
         "800": "#707070",
+        "900": "#191919",
       },
     },
     colors: {

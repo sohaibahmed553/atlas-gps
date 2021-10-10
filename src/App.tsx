@@ -8,6 +8,7 @@ import {
   StylesProvider,
 } from "@material-ui/styles";
 import { BrowserRouter as Router } from "react-router-dom";
+import { CssBaseline } from "@material-ui/core";
 
 function App() {
   const generateClassName = createGenerateClassName();
@@ -15,6 +16,7 @@ function App() {
   return (
     <StylesProvider generateClassName={generateClassName}>
       <ThemeProvider theme={theme}>
+        <CssBaseline />
         <Router>
           <Root />
         </Router>
