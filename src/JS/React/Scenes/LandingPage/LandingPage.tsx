@@ -1,11 +1,12 @@
 import React from "react";
-import { StandardProps, Theme, Typography } from "@material-ui/core";
+import { Grid, StandardProps, Theme, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
-import { StyleClassKey } from "../../Typescript";
+import { StyleClassKey } from "../../../Typescript";
 import { getImageSrc, ImageNames } from "JS/Helpers/Image";
 import { Map, Marker } from "pigeon-maps";
 import ReactTextRotator from "react-text-rotator";
 import clsx from "clsx";
+import { Reviews } from "./Reviews";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -18,9 +19,6 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   title: {
     fontWeight: "bolder",
-    // [theme.breakpoints.down(theme.navbar.breakpoint)]: {
-    //   fontSize: "2.5rem",
-    // },
   },
   mapContainer: {
     display: "flex",
@@ -29,7 +27,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   divider: {
     width: "100vw",
     height: "300px",
-    backgroundImage: `url(images/divider.jpg)`,
+    backgroundImage: `url(${getImageSrc(ImageNames.DIVIDER)})`,
     backgroundRepeat: "no-repeat",
     backgroundPosition: "bottom",
     backgroundSize: "contain",
@@ -40,13 +38,24 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: theme.spacing(10, 0, 0, 0),
     display: "flex",
     width: "100%",
-    justifyContent: "space-around",
+  },
+  mobileAppInfoSection: {
+    [theme.breakpoints.down(theme.navbar.breakpoint)]: {
+      textAlign: "center",
+      marginBottom: theme.spacing(5),
+    },
   },
   bolderText: {
     fontWeight: "bolder",
   },
   rotationContent: {
     color: theme.palette.primary.light,
+  },
+  phoneImage: {
+    width: "400px",
+    [theme.breakpoints.down(theme.navbar.breakpoint)]: {
+      width: "250px",
+    },
   },
 }));
 
@@ -117,34 +126,66 @@ export const LandingPage = (props: LandingPageProps) => {
       </span>
 
       <div className={classes.divider}></div>
-      <section className={classes.mobileAppSection}>
-        <div>
-          <Typography className={classes.bolderText} variant="h3">
-            ALTLAS
-          </Typography>
-          <Typography className={classes.bolderText} variant="h3">
-            MADE FOR
-          </Typography>
-          <Typography
-            className={clsx(classes.bolderText, classes.rotationContent)}
-            variant="h3"
-          >
-            <ReactTextRotator content={rotatorContent} transitionTime={200} />
-          </Typography>
-          <Typography variant="h6">
-            <span
-              style={{
-                fontWeight: "bolder",
-              }}
+      <Grid
+        container
+        alignItems="center"
+        justify="center"
+        className={classes.mobileAppSection}
+      >
+        <Grid
+          item
+          md={6}
+          justify="center"
+          direction="column"
+          alignItems="center"
+          style={{
+            display: "flex",
+          }}
+        >
+          <div className={classes.mobileAppInfoSection}>
+            <Typography className={classes.bolderText} variant="h3">
+              ALTLAS
+            </Typography>
+            <Typography className={classes.bolderText} variant="h3">
+              MADE FOR
+            </Typography>
+            <Typography
+              className={clsx(classes.bolderText, classes.rotationContent)}
+              variant="h3"
             >
-              ALTLAS's
-            </span>{" "}
-            mobile app and website provides GPS/GPX trails <br /> discovery,
-            altitude monitoring, track and record activites.
-          </Typography>
-        </div>
-        <div>asdasd</div>
-      </section>
+              <ReactTextRotator content={rotatorContent} transitionTime={200} />
+            </Typography>
+            <Typography variant="h6">
+              <span
+                style={{
+                  fontWeight: "bolder",
+                }}
+              >
+                ALTLAS's
+              </span>{" "}
+              mobile app and website provides GPS/GPX trails <br /> discovery,
+              altitude monitoring, track and record activites.
+            </Typography>
+          </div>
+        </Grid>
+        <Grid
+          item
+          md={6}
+          justify="center"
+          direction="column"
+          alignItems="center"
+          style={{
+            textAlign: "center",
+          }}
+        >
+          <img
+            alt="header smartphone"
+            src={getImageSrc(ImageNames.HEADER_SMARTPHONES)}
+            className={classes.phoneImage}
+          />
+        </Grid>
+      </Grid>
+      <Reviews />
     </div>
   );
 };

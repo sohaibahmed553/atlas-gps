@@ -4,7 +4,7 @@ import { AppNavbar } from "../Components/AppNavbar";
 import { useRouting } from "../Hooks/Routes";
 import { Article } from "./Article";
 import { Contact } from "./Contact";
-import { LandingPage } from "./LandingPage";
+import { LandingPage } from "./LandingPage/LandingPage";
 import { Pricing } from "./Pricing";
 import { SearchTrails } from "./SearchTrails";
 import { library } from "@fortawesome/fontawesome-svg-core";
