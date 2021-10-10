@@ -68,6 +68,16 @@ function createAppTheme(options: ThemeOptions) {
         useNextVariants: true,
       } as any),
       fontFamily: "Roboto, Helvetica, Arial, sans-serif",
+      h3: {
+        [theme.breakpoints.down("sm")]: {
+          fontSize: "2.5rem",
+        },
+      },
+      h6: {
+        [theme.breakpoints.down("sm")]: {
+          fontSize: "1rem",
+        },
+      },
     },
     infoPanel: {
       breakpoint: "sm",

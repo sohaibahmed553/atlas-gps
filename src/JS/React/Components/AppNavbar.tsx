@@ -115,7 +115,7 @@ export const AppNavbar = (props: AppNavbarProps) => {
   };
 
   return (
-    <Paper elevation={2} square className={classes.header}>
+    <Paper elevation={2} square className={classes.header} {...rest}>
       <Typography
         variant="h5"
         style={{
