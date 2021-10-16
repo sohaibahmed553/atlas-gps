@@ -35,7 +35,14 @@ const decorator = withStyles(styles as StylesType<AppTabsClassKey>);
 function Component(props: AppTabsProps) {
   const { classes, appBarProps, children, onTabChange, ...rest } = props;
   return (
-    <AppBar position="static" className={classes.appbar} {...appBarProps}>
+    <AppBar
+      style={{
+        alignItems: "center",
+      }}
+      position="static"
+      className={classes.appbar}
+      {...appBarProps}
+    >
       <Tabs
         indicatorColor="primary"
         textColor="primary"

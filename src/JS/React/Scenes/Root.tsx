@@ -18,7 +18,12 @@ import {
   faSearchLocation,
   faLayerGroup,
   faMapMarkedAlt,
+  faMountain,
+  faTachometerAlt,
+  faLongArrowAltUp,
+  faShareAlt,
 } from "@fortawesome/free-solid-svg-icons";
+import { faCompass } from "@fortawesome/free-regular-svg-icons";
 
 library.add(
   faBars,
@@ -29,7 +34,12 @@ library.add(
   faCompactDisc,
   faSearchLocation,
   faLayerGroup,
-  faMapMarkedAlt
+  faMapMarkedAlt,
+  faMountain,
+  faTachometerAlt,
+  faLongArrowAltUp,
+  faCompass,
+  faShareAlt
 );
 
 const Root = () => {

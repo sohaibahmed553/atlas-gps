@@ -9,11 +9,12 @@ import {
   Typography,
 } from "@material-ui/core";
 import clsx from "clsx";
-import { getImageSrc, ImageNames } from "JS/Helpers/Image";
+import { getImageSrc, ImageNames } from "JS/Helpers/Media";
 import AppTabs, { TabPanel } from "JS/React/Components/AppTabs";
 import SwipeableViews from "react-swipeable-views";
 import { StyleClassKey } from "JS/Typescript";
 import React, { useState } from "react";
+import { useMediaQuery } from "react-responsive";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -35,22 +36,35 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   featuresContainers: {
     marginTop: theme.spacing(3),
+    textAlign: "center",
   },
+
   leftMediaContainer: {
     paddingTop: theme.spacing(7),
     display: "flex",
     flexDirection: "column",
     alignItems: "flex-end",
+    [theme.breakpoints.down("md")]: {
+      paddingTop: theme.spacing(2),
+      alignItems: "flex-start",
+    },
   },
   rightMediaContainer: {
     paddingTop: theme.spacing(7),
     display: "flex",
     flexDirection: "column",
     alignItems: "flex-start",
+    [theme.breakpoints.down("md")]: {
+      paddingTop: theme.spacing(2),
+    },
   },
   mediaDetailRoot: {
     display: "flex",
     marginBottom: theme.spacing(7),
+  },
+  mediaDetailRootMissingDetail: {
+    display: "flex",
+    marginBottom: theme.spacing(4),
   },
   mediaTitle: {
     fontWeight: "bolder",
@@ -106,6 +120,8 @@ export const FeaturesTabs = (props: FeaturesTabsProps) => {
 
   const [activeTab, setActiveTab] = useState(0);
 
+  const isTablet = useMediaQuery({ query: "(max-device-width: 1280px)" });
+
   const tabs = [
     {
       label: `Discovering`,
@@ -134,12 +150,13 @@ export const FeaturesTabs = (props: FeaturesTabsProps) => {
   ];
 
   const discoveringContainer = (
-    <Grid container spacing={5} className={classes.featuresContainers}>
-      <Grid item md={4}>
+    <Grid container justify="center" className={classes.featuresContainers}>
+      <Grid item lg={4} md={6} sm={12}>
         <div className={classes.leftMediaContainer}>
           <MediaDetail
             title="Search trails"
             detail="Find the best hiking trails around the world."
+            iconPosition={isTablet ? "left" : "right"}
             icon={
               <FontAwesomeIcon
                 className={classes.mediaIcon}
@@ -150,6 +167,7 @@ export const FeaturesTabs = (props: FeaturesTabsProps) => {
           <MediaDetail
             title="Find nearby trails"
             detail="Find nearby trails that was recorded by the app users."
+            iconPosition={isTablet ? "left" : "right"}
             icon={
               <FontAwesomeIcon
                 className={classes.mediaIcon}
@@ -159,14 +177,14 @@ export const FeaturesTabs = (props: FeaturesTabsProps) => {
           />
         </div>
       </Grid>
-      <Grid item md={4}>
+      <Grid item lg={4} md={12} sm={12}>
         <img
           alt="features smartphone"
-          src={getImageSrc(ImageNames.FEATURES_SMARTPHONE)}
+          src={getImageSrc(ImageNames.FEATURES_SMARTPHONE_DISCOVERING)}
           className={classes.phoneImage}
         />
       </Grid>
-      <Grid item md={4}>
+      <Grid item lg={4} md={6} sm={12}>
         <div className={classes.rightMediaContainer}>
           <MediaDetail
             title="Various activities"
@@ -196,35 +214,36 @@ export const FeaturesTabs = (props: FeaturesTabsProps) => {
   );
 
   const monitoringContainer = (
-    <Grid container spacing={5} className={classes.featuresContainers}>
+    <Grid container justify="center" className={classes.featuresContainers}>
       <Grid item lg={4} md={12} sm={12}>
         <img
           alt="features smartphone"
-          src={getImageSrc(ImageNames.FEATURES_SMARTPHONE)}
+          src={getImageSrc(ImageNames.FEATURES_SMARTPHONE_MONITORING)}
           className={classes.phoneImage}
         />
       </Grid>
+
       <Grid item lg={4} md={6} sm={12}>
         <div className={classes.rightMediaContainer}>
           <MediaDetail
-            title="Search trails"
-            detail="Find the best hiking trails around the world."
+            title="Altimeter"
+            detail="Find your elevation. ALTLAS provide you the best elevation finder with GPS or Barometer."
             iconPosition="left"
             icon={
               <FontAwesomeIcon
                 className={classes.mediaIcon}
-                icon={["fas", "search"]}
+                icon={["fas", "mountain"]}
               />
             }
           />
           <MediaDetail
-            title="Find nearby trails"
-            detail="Find nearby trails that was recorded by the app users."
+            title="Speedometer"
+            detail="Get your speed on real time with the GPS sensor of your phone."
             iconPosition="left"
             icon={
               <FontAwesomeIcon
                 className={classes.mediaIcon}
-                icon={["fas", "search-location"]}
+                icon={["fas", "tachometer-alt"]}
               />
             }
           />
@@ -233,24 +252,24 @@ export const FeaturesTabs = (props: FeaturesTabsProps) => {
       <Grid item lg={4} md={6} sm={12}>
         <div className={classes.rightMediaContainer}>
           <MediaDetail
-            title="Various activities"
-            detail="Find elevation, discover hiking trails with elevation map."
+            title="Elevation Gain"
+            detail="Get the Elevation gain during your activites."
             iconPosition="left"
             icon={
               <FontAwesomeIcon
                 className={classes.mediaIcon}
-                icon={["fas", "layer-group"]}
+                icon={["fas", "long-arrow-alt-up"]}
               />
             }
           />
           <MediaDetail
-            title="Find point of intereset"
-            detail="Find the best points of interest around the world."
+            title="Compass"
+            detail="ALTLAS has built-in compass to help you navigate better."
             iconPosition="left"
             icon={
               <FontAwesomeIcon
                 className={classes.mediaIcon}
-                icon={["fas", "map-marked-alt"]}
+                icon={["far", "compass"]}
               />
             }
           />
@@ -260,28 +279,26 @@ export const FeaturesTabs = (props: FeaturesTabsProps) => {
   );
 
   const recordingContainer = (
-    <Grid container spacing={5} className={classes.featuresContainers}>
+    <Grid container justify="center" className={classes.featuresContainers}>
       <Grid item lg={6} md={12}>
-        <div className={classes.leftMediaContainer}>
+        <div className={classes.rightMediaContainer}>
           <MediaDetail
             title="Track recording"
-            detail="Find the best hiking trails around the world."
             iconPosition="left"
             icon={
               <FontAwesomeIcon
                 className={classes.mediaIcon}
-                icon={["fas", "search"]}
+                icon={["fas", "compact-disc"]}
               />
             }
           />
           <MediaDetail
             title="Share trails"
-            detail="Find nearby trails that was recorded by the app users."
             iconPosition="left"
             icon={
               <FontAwesomeIcon
                 className={classes.mediaIcon}
-                icon={["fas", "search-location"]}
+                icon={["fas", "share-alt"]}
               />
             }
           />
@@ -289,6 +306,7 @@ export const FeaturesTabs = (props: FeaturesTabsProps) => {
             style={{
               color: "white",
               textAlign: "left",
+              marginBottom: "16px",
             }}
           >
             <Typography
@@ -310,7 +328,7 @@ export const FeaturesTabs = (props: FeaturesTabsProps) => {
       <Grid item lg={6} md={12}>
         <img
           alt="features smartphone"
-          src={getImageSrc(ImageNames.FEATURES_SMARTPHONE)}
+          src={getImageSrc(ImageNames.FEATURES_SMARTPHONE_RECORDING)}
           className={classes.phoneImage}
         />
       </Grid>
@@ -326,6 +344,14 @@ export const FeaturesTabs = (props: FeaturesTabsProps) => {
         textColor="secondary"
         variant="standard"
         centered
+        orientation={isTablet ? "vertical" : "horizontal"}
+        TabIndicatorProps={
+          isTablet && {
+            style: {
+              display: "none",
+            },
+          }
+        }
       >
         {tabs.map((tab) => (
           <Tab
@@ -369,7 +395,7 @@ interface MediaDetailProps
     FeaturesTabsClassKey
   > {
   title: string;
-  detail: string;
+  detail?: string;
   icon: React.ReactNode;
   iconPosition?: "right" | "left";
 }
@@ -379,7 +405,12 @@ const MediaDetail = (props: MediaDetailProps) => {
   const { title, detail, icon, iconPosition = "right", ...rest } = props;
 
   return (
-    <div className={classes.mediaDetailRoot} {...rest}>
+    <div
+      className={clsx(
+        detail ? classes.mediaDetailRoot : classes.mediaDetailRootMissingDetail
+      )}
+      {...rest}
+    >
       {iconPosition === "left" && (
         <div>
           <Avatar className={classes.mediaIconAvatar}>{icon}</Avatar>
@@ -395,9 +426,12 @@ const MediaDetail = (props: MediaDetailProps) => {
         <Typography className={classes.mediaTitle} variant="h5">
           {title}
         </Typography>
-        <Typography variant="body1" className={classes.mediaDetail}>
-          {detail}
-        </Typography>
+
+        {detail && (
+          <Typography variant="body1" className={classes.mediaDetail}>
+            {detail}
+          </Typography>
+        )}
       </div>
       {iconPosition === "right" && (
         <div>

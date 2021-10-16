@@ -2,12 +2,13 @@ import React from "react";
 import { Grid, StandardProps, Theme, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import { StyleClassKey } from "JS/Typescript";
-import { getImageSrc, ImageNames } from "JS/Helpers/Image";
+import { getImageSrc, ImageNames } from "JS/Helpers/Media";
 import { Map, Marker } from "pigeon-maps";
 import ReactTextRotator from "react-text-rotator";
 import clsx from "clsx";
 import { Reviews } from "./Reviews";
 import { FeaturesTabs } from "./FeaturesTabs";
+import { Preview } from "./Preview";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {},
@@ -218,7 +219,7 @@ export const LandingPage = (props: LandingPageProps) => {
             className={clsx(classes.bolderText)}
             variant="h3"
           >
-            Features
+            FEATURES
           </Typography>
 
           <Typography
@@ -236,6 +237,7 @@ export const LandingPage = (props: LandingPageProps) => {
         </div>
         <FeaturesTabs />
       </section>
+      <Preview />
     </div>
   );
 };

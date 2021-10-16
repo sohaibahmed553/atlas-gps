@@ -102,7 +102,7 @@ export const Reviews = (props: ReviewsProps) => {
   ];
 
   return (
-    <section className={classes.root}>
+    <section className={classes.root} {...rest}>
       <div className={classes.sliderWrapper}>
         <Slide
           easing="ease"

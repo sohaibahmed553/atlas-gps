@@ -4,7 +4,7 @@ import {
   Theme,
   Typography,
 } from "@material-ui/core";
-import { getImageSrc, ImageNames } from "JS/Helpers/Image";
+import { getImageSrc, ImageNames } from "JS/Helpers/Media";
 
 import { StyleClassKey } from "JS/Typescript";
 import React from "react";
