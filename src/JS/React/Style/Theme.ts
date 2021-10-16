@@ -15,6 +15,7 @@ declare module "@material-ui/core/styles/createMuiTheme" {
       redDark?: React.CSSProperties["color"];
       darkGrey?: React.CSSProperties["color"];
       yellow?: React.CSSProperties["color"];
+      skyBlue?: React.CSSProperties["color"];
     };
     drawer?: {
       breakpoint: Breakpoint;
@@ -160,6 +161,7 @@ function createAppTheme(options: ThemeOptions) {
       redDark: "#e35454",
       darkGrey: "#25263e",
       yellow: "#ebe30e",
+      skyBlue: "#00c9db",
     },
     zIndex: {},
     overrides: {

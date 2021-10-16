@@ -15,6 +15,9 @@ import {
   faSearch,
   faBinoculars,
   faCompactDisc,
+  faSearchLocation,
+  faLayerGroup,
+  faMapMarkedAlt,
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -23,7 +26,10 @@ library.add(
   faChevronRight,
   faSearch,
   faBinoculars,
-  faCompactDisc
+  faCompactDisc,
+  faSearchLocation,
+  faLayerGroup,
+  faMapMarkedAlt
 );
 
 const Root = () => {

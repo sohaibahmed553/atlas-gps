@@ -3,6 +3,7 @@ export enum ImageNames {
   DIVIDER = "DIVIDER",
   HEADER_SMARTPHONES = "HEADER_SMARTPHONES",
   FIVE_STARS = "FIVE_STARS",
+  FEATURES_SMARTPHONE = "FEATURES_SMARTPHONE",
 }
 
 export const getImageSrc = (name: ImageNames) => {
@@ -17,5 +18,7 @@ export const getImageSrc = (name: ImageNames) => {
       return "images/header-smartphones.png";
     case ImageNames.FIVE_STARS:
       return "images/five-stars.svg";
+    case ImageNames.FEATURES_SMARTPHONE:
+      return "images/features-smartphone-1.png";
   }
 };
