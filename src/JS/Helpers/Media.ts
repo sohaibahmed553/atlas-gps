@@ -16,6 +16,7 @@ export enum ImageNames {
   SCREENSHOT_8 = "SCREENSHOT_8",
   SCREENSHOT_9 = "SCREENSHOT_9",
   SCREENSHOT_10 = "SCREENSHOT_10",
+  DOWNLOAD = "DOWNLOAD",
 }
 
 export enum VideoNames {
@@ -58,6 +59,8 @@ export const getImageSrc = (name: ImageNames) => {
       return "images/screenshot-9.png";
     case ImageNames.SCREENSHOT_10:
       return "images/screenshot-10.png";
+    case ImageNames.DOWNLOAD:
+      return "images/download.png";
   }
 };
 

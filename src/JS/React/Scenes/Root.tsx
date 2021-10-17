@@ -27,6 +27,7 @@ import {
   faComments,
 } from "@fortawesome/free-solid-svg-icons";
 import { faCompass } from "@fortawesome/free-regular-svg-icons";
+import { faGooglePlay } from "@fortawesome/free-brands-svg-icons";
 
 library.add(
   faBars,
@@ -45,7 +46,8 @@ library.add(
   faShareAlt,
   faUsers,
   faCog,
-  faComments
+  faComments,
+  faGooglePlay
 );
 
 const Root = () => {

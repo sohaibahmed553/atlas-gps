@@ -11,6 +11,7 @@ import { FeaturesTabs } from "./FeaturesTabs";
 import { Preview } from "./Preview";
 import { Stats } from "./Stats";
 import { ScreenShots } from "./ScreenShots";
+import { Download } from "./Download";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {},
@@ -240,6 +241,7 @@ export const LandingPage = (props: LandingPageProps) => {
       <Preview />
       <Stats />
       <ScreenShots />
+      <Download />
     </div>
   );
 };
