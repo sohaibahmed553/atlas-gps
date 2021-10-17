@@ -9,6 +9,7 @@ import clsx from "clsx";
 import { Reviews } from "./Reviews";
 import { FeaturesTabs } from "./FeaturesTabs";
 import { Preview } from "./Preview";
+import { Stats } from "./Stats";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {},
@@ -64,8 +65,6 @@ const useStyles = makeStyles((theme: Theme) => ({
   featuresContainer: {
     background: theme.palette.grey["900"],
     padding: theme.spacing(10, 2),
-
-    // display: "flex",
   },
   features: {
     color: theme.palette.common.white,
@@ -238,6 +237,7 @@ export const LandingPage = (props: LandingPageProps) => {
         <FeaturesTabs />
       </section>
       <Preview />
+      <Stats />
     </div>
   );
 };

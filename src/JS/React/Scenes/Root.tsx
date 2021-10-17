@@ -22,6 +22,9 @@ import {
   faTachometerAlt,
   faLongArrowAltUp,
   faShareAlt,
+  faUsers,
+  faCog,
+  faComments,
 } from "@fortawesome/free-solid-svg-icons";
 import { faCompass } from "@fortawesome/free-regular-svg-icons";
 
@@ -39,7 +42,10 @@ library.add(
   faTachometerAlt,
   faLongArrowAltUp,
   faCompass,
-  faShareAlt
+  faShareAlt,
+  faUsers,
+  faCog,
+  faComments
 );
 
 const Root = () => {
