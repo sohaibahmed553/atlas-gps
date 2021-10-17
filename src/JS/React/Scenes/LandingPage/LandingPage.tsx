@@ -10,6 +10,7 @@ import { Reviews } from "./Reviews";
 import { FeaturesTabs } from "./FeaturesTabs";
 import { Preview } from "./Preview";
 import { Stats } from "./Stats";
+import { ScreenShots } from "./ScreenShots";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {},
@@ -238,6 +239,7 @@ export const LandingPage = (props: LandingPageProps) => {
       </section>
       <Preview />
       <Stats />
+      <ScreenShots />
     </div>
   );
 };

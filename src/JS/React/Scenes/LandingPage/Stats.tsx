@@ -10,7 +10,7 @@ import React from "react";
 import { AppCountUp } from "JS/React/Components/AppCountUp";
 
 const useStyles = makeStyles((theme: Theme) => ({
-  statsContainer: {
+  root: {
     background: theme.palette.grey["900"],
     padding: theme.spacing(10, 0),
     display: "flex",
@@ -59,7 +59,7 @@ export const Stats = (props: StatsProps) => {
   const { className, ...rest } = props;
 
   return (
-    <section className={classes.statsContainer} {...rest}>
+    <section className={classes.root} {...rest}>
       <div className={classes.statsWrapper}>
         <div className={classes.stats}>
           <FontAwesomeIcon
