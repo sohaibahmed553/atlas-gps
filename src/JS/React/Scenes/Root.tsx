@@ -27,7 +27,14 @@ import {
   faComments,
 } from "@fortawesome/free-solid-svg-icons";
 import { faCompass } from "@fortawesome/free-regular-svg-icons";
-import { faGooglePlay } from "@fortawesome/free-brands-svg-icons";
+import {
+  faGooglePlay,
+  faFacebookF,
+  faTwitter,
+  faPinterestP,
+  faInstagram,
+} from "@fortawesome/free-brands-svg-icons";
+import { Footer } from "./Footer";
 
 library.add(
   faBars,
@@ -47,7 +54,11 @@ library.add(
   faUsers,
   faCog,
   faComments,
-  faGooglePlay
+  faGooglePlay,
+  faFacebookF,
+  faTwitter,
+  faPinterestP,
+  faInstagram
 );
 
 const Root = () => {
@@ -94,6 +105,7 @@ const Root = () => {
           }}
         />
       </Switch>
+      <Footer />
     </React.Fragment>
   );
 };
