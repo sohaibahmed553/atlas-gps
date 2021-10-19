@@ -120,7 +120,15 @@ export const Footer = (props: FooterProps) => {
               display: "flex",
             }}
           >
-            <Avatar className={classes.mediaIconAvatar}>
+            <Avatar
+              className={classes.mediaIconAvatar}
+              onClick={() =>
+                window.open(
+                  "https://www.facebook.com/Altlas-App-113487803675588/",
+                  "_blank"
+                )
+              }
+            >
               <FontAwesomeIcon icon={["fab", "facebook-f"]} />
             </Avatar>
             <Avatar className={classes.mediaIconAvatar}>
@@ -129,7 +137,12 @@ export const Footer = (props: FooterProps) => {
             <Avatar className={classes.mediaIconAvatar}>
               <FontAwesomeIcon icon={["fab", "pinterest-p"]} />
             </Avatar>
-            <Avatar className={classes.mediaIconAvatar}>
+            <Avatar
+              className={classes.mediaIconAvatar}
+              onClick={() =>
+                window.open("https://www.instagram.com/erol1apps/", "_blank")
+              }
+            >
               <FontAwesomeIcon icon={["fab", "instagram"]} />
             </Avatar>
           </div>
@@ -137,8 +150,15 @@ export const Footer = (props: FooterProps) => {
             <Typography variant="body1">
               We would love to hear from you
             </Typography>
-            <Typography className={classes.bolderText} variant="body1">
-              contact@leno.com
+            <Typography
+              style={{
+                cursor: "pointer",
+              }}
+              className={classes.bolderText}
+              variant="body1"
+              onClick={() => window.open("mailto:contact@ALTLAS.com")}
+            >
+              erol1apps@gmail.com
             </Typography>
           </div>
         </Grid>

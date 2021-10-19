@@ -81,6 +81,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundColor: theme.palette.secondary.main,
     width: theme.spacing(8),
     height: theme.spacing(8),
+    cursor: "pointer",
+    "&:hover": {
+      backgroundColor: theme.palette.primary.main,
+    },
   },
   textContainerLeft: {
     marginLeft: theme.spacing(2),

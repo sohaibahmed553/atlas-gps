@@ -14,6 +14,7 @@ import { useHistory } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
+import { getImageSrc, ImageNames } from "JS/Helpers/Media";
 
 const useStyles = makeStyles((theme: Theme) => ({
   header: {
@@ -116,14 +117,15 @@ export const AppNavbar = (props: AppNavbarProps) => {
 
   return (
     <Paper elevation={2} square className={classes.header} {...rest}>
-      <Typography
+      {/* <Typography
         variant="h5"
         style={{
           fontWeight: "bolder",
         }}
       >
         ALTLAS
-      </Typography>
+      </Typography> */}
+      <img width={100} src={getImageSrc(ImageNames.ALTLAS_LOGO)} />
 
       <div className={classes.navItems}>
         {navItems.map((item) => (

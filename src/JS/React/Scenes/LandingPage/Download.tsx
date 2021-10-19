@@ -68,7 +68,16 @@ export const Download = (props: DownloadProps) => {
           Download ALTLAS today to see the benefits and enjoy the results faster
           than any other app out there
         </Typography>
-        <AppRoundedButton buttonVariant="blue" padding="large">
+        <AppRoundedButton
+          buttonVariant="blue"
+          padding="large"
+          onClick={() =>
+            window.open(
+              "https://play.google.com/store/apps/details?id=altitude.alarm.erol.apps",
+              "_blank"
+            )
+          }
+        >
           <FontAwesomeIcon
             className={classes.googleIcon}
             icon={["fab", "google-play"]}
