@@ -8,7 +8,6 @@ import {
   Typography,
 } from "@material-ui/core";
 import clsx from "clsx";
-import { useMediaQuery } from "react-responsive";
 import { StyleClassKey } from "JS/Typescript";
 import React from "react";
 
@@ -54,6 +53,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 
   gridItem: {
+    padding: theme.spacing(0, 1),
     [theme.breakpoints.down("md")]: {
       margin: theme.spacing(2, 0),
     },
@@ -73,15 +73,10 @@ export interface FooterProps
 export const Footer = (props: FooterProps) => {
   const classes = useStyles(props);
   const { className, ...rest } = props;
-  const isTablet = useMediaQuery({ query: "(min-device-width: 800px)" });
 
   return (
     <section className={classes.root}>
-      <Grid
-        container
-        spacing={isTablet ? 2 : 0}
-        className={classes.contentContainer}
-      >
+      <Grid container className={classes.contentContainer}>
         <Grid item lg={3}></Grid>
         <Grid item lg={2} md={12} className={classes.gridItem}>
           <Typography
