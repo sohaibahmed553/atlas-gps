@@ -3,7 +3,7 @@ import { Grid, StandardProps, Theme, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import { StyleClassKey } from "JS/Typescript";
 import { getImageSrc, ImageNames } from "JS/Helpers/Media";
-import { Map, Marker } from "pigeon-maps";
+import { Map, Marker, ZoomControl } from "pigeon-maps";
 import ReactTextRotator from "react-text-rotator";
 import clsx from "clsx";
 import { Reviews } from "./Reviews";
@@ -163,6 +163,7 @@ export const LandingPage = (props: LandingPageProps) => {
           }}
         >
           <Map height={600} defaultCenter={[50.879, 4.6997]} defaultZoom={11}>
+            <ZoomControl />
             <Marker width={50} anchor={[50.879, 4.6997]} />
           </Map>
         </div>
