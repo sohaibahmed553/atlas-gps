@@ -2,10 +2,7 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import { AppNavbar } from "../Components/AppNavbar";
 import { useRouting } from "../Hooks/Routes";
-import { Article } from "./Article";
-import { Contact } from "./Contact";
 import { LandingPage } from "./LandingPage/LandingPage";
-import { Pricing } from "./Pricing";
 import { SearchTrails } from "./SearchTrails";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -76,7 +73,7 @@ const Root = () => {
             return <LandingPage />;
           }}
         />
-        <Route
+        {/* <Route
           exact={true}
           path={routeProvider.react.article()}
           render={() => {
@@ -96,7 +93,7 @@ const Root = () => {
           render={() => {
             return <Contact />;
           }}
-        />
+        /> */}
         <Route
           exact={true}
           path={routeProvider.react.searchTrails()}

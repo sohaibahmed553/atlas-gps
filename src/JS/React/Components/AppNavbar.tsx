@@ -86,18 +86,18 @@ export const AppNavbar = (props: AppNavbarProps) => {
       title: "Home",
       route: routeProvider.react.root(),
     },
-    {
-      title: "Article",
-      route: routeProvider.react.article(),
-    },
-    {
-      title: "Pricing",
-      route: routeProvider.react.pricing(),
-    },
-    {
-      title: "Contact",
-      route: routeProvider.react.contact(),
-    },
+    // {
+    //   title: "Article",
+    //   route: routeProvider.react.article(),
+    // },
+    // {
+    //   title: "Pricing",
+    //   route: routeProvider.react.pricing(),
+    // },
+    // {
+    //   title: "Contact",
+    //   route: routeProvider.react.contact(),
+    // },
     {
       title: "Search Trails",
       route: routeProvider.react.searchTrails(),
@@ -125,7 +125,13 @@ export const AppNavbar = (props: AppNavbarProps) => {
       >
         ALTLAS
       </Typography> */}
-      <img width={100} src={getImageSrc(ImageNames.ALTLAS_LOGO)} />
+      <img
+        style={{
+          cursor: "pointer",
+        }}
+        width={100}
+        src={getImageSrc(ImageNames.ALTLAS_LOGO)}
+      />
 
       <div className={classes.navItems}>
         {navItems.map((item) => (

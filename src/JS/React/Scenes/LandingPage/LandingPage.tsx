@@ -12,6 +12,8 @@ import { Preview } from "./Preview";
 import { Stats } from "./Stats";
 import { ScreenShots } from "./ScreenShots";
 import { Download } from "./Download";
+import { AppRoundedButton } from "JS/React/Components/AppRoundedButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {},
@@ -71,6 +73,14 @@ const useStyles = makeStyles((theme: Theme) => ({
   features: {
     color: theme.palette.common.white,
     textAlign: "center",
+  },
+  exploreButtonContainer: {
+    textAlign: "center",
+    margin: theme.spacing(3, 0),
+  },
+  searchIcon: {
+    fontSize: "1rem",
+    marginRight: theme.spacing(1),
   },
 }));
 
@@ -134,6 +144,16 @@ export const LandingPage = (props: LandingPageProps) => {
             />
           </a>
         </div>
+      </div>
+
+      <div className={classes.exploreButtonContainer}>
+        <AppRoundedButton buttonVariant="blue" padding="large">
+          <FontAwesomeIcon
+            className={classes.searchIcon}
+            icon={["fas", "search-location"]}
+          />
+          <Typography variant="body1">Explore</Typography>
+        </AppRoundedButton>
       </div>
 
       <section className={classes.mapContainer}>
