@@ -3,7 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import { AppNavbar } from "../Components/AppNavbar";
 import { useRouting } from "../Hooks/Routes";
 import { LandingPage } from "./LandingPage/LandingPage";
-import { SearchTrails } from "./SearchTrails";
+import { SearchTrails } from "./SearchTrails/SearchTrails";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faBars,
@@ -22,6 +22,8 @@ import {
   faUsers,
   faCog,
   faComments,
+  faAngleDoubleLeft,
+  faAngleDoubleRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { faCompass } from "@fortawesome/free-regular-svg-icons";
 import {
@@ -31,7 +33,6 @@ import {
   faPinterestP,
   faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
-import { Footer } from "./Footer";
 
 library.add(
   faBars,
@@ -55,7 +56,9 @@ library.add(
   faFacebookF,
   faTwitter,
   faPinterestP,
-  faInstagram
+  faInstagram,
+  faAngleDoubleLeft,
+  faAngleDoubleRight
 );
 
 const Root = () => {
@@ -64,7 +67,7 @@ const Root = () => {
 
   return (
     <React.Fragment>
-      <AppNavbar />
+      {/* <AppNavbar /> */}
       <Switch>
         <Route
           exact={true}
@@ -102,7 +105,7 @@ const Root = () => {
           }}
         />
       </Switch>
-      <Footer />
+      {/* <Footer /> */}
     </React.Fragment>
   );
 };

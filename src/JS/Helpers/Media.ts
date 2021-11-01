@@ -18,6 +18,7 @@ export enum ImageNames {
   SCREENSHOT_10 = "SCREENSHOT_10",
   DOWNLOAD = "DOWNLOAD",
   ALTLAS_LOGO = "ALTLAS_LOGO",
+  DUMMY_IMAGE = "DUMMY_IMAGE",
 }
 
 export enum VideoNames {
@@ -64,6 +65,8 @@ export const getImageSrc = (name: ImageNames) => {
       return "images/download.png";
     case ImageNames.ALTLAS_LOGO:
       return "images/logo.svg";
+    case ImageNames.DUMMY_IMAGE:
+      return "images/dummy-image.jpg";
   }
 };
 

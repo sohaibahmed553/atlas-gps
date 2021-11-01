@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
-    marginBottom: theme.spacing(6),
+    // marginBottom: theme.spacing(6),
     [theme.breakpoints.down(theme.navbar.breakpoint)]: {
       paddingLeft: "20px",
       paddingRight: "20px",
