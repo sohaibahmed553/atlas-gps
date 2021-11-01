@@ -33,6 +33,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: "flex",
     flexDirection: "column",
     height: "calc(100vh - 60px)",
+    maxHeight: "calc(100vh - 60px)",
   },
   buttonLeftMargin: {
     marginLeft: theme.spacing(2),
@@ -62,14 +63,17 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   trailsAndMapContainer: {
     padding: theme.spacing(2, 2),
+    overflow: "auto",
     background: theme.palette.grey[200],
-    flexGrow: 1,
     height: "100%",
   },
   trailsContainer: {
     paddingRight: theme.spacing(2),
     height: "100%",
     overflow: "auto",
+  },
+  mapContainer: {
+    height: "100%",
   },
 }));
 
@@ -309,7 +313,7 @@ export const SearchTrails = (props: SearchTrailsProps) => {
           <Grid item md={6} sm={12} xs={12} className={classes.trailsContainer}>
             <Trails filter={filter} />
           </Grid>
-          <Grid item md={6} sm={12} xs={12}>
+          <Grid item md={6} sm={12} xs={12} className={classes.mapContainer}>
             <Map defaultCenter={[50.879, 4.6997]} defaultZoom={11}>
               <ZoomControl />
               <Marker width={50} anchor={[50.879, 4.6997]} />

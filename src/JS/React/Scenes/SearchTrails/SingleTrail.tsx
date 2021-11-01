@@ -26,6 +26,16 @@ const useStyles = makeStyles((theme: Theme) => ({
   nameTypeContainer: {
     display: "flex",
     justifyContent: "space-between",
+    [theme.breakpoints.down("md")]: {
+      flexDirection: "column",
+      textAlign: "center",
+    },
+  },
+  nameImage: {
+    width: 150,
+    [theme.breakpoints.down("md")]: {
+      width: "100%",
+    },
   },
   marginLeft: {
     marginLeft: theme.spacing(4),
@@ -64,12 +74,12 @@ export const SingleTrail = (props: SingleTrailProps) => {
           <Typography variant="body1">{trail.title}</Typography>
           <Typography variant="body1">{trail.actType}</Typography>
           <img
+            className={classes.nameImage}
             src={
               trail.imageUrl
                 ? trail.imageUrl
                 : getImageSrc(ImageNames.DUMMY_IMAGE)
             }
-            width={150}
           />
         </div>
         <div
