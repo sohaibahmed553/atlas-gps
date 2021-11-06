@@ -136,6 +136,7 @@ export const AppNavbar = (props: AppNavbarProps) => {
       <div className={classes.navItems}>
         {navItems.map((item) => (
           <Typography
+            key={item.title}
             className={classes.navMenu}
             variant="body1"
             onClick={() => history.push(item.route)}
@@ -165,7 +166,7 @@ export const AppNavbar = (props: AppNavbarProps) => {
           onClose={handleMenuClosed}
         >
           {navItems.map((item: NavItem) => (
-            <MenuItem onClick={() => handleMenuClosed(item)}>
+            <MenuItem key={item.title} onClick={() => handleMenuClosed(item)}>
               {item.title}
             </MenuItem>
           ))}

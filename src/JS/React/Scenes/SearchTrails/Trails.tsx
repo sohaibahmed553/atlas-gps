@@ -7,18 +7,11 @@ import {
 } from "@material-ui/core";
 import clsx from "clsx";
 import { StyleClassKey } from "JS/Typescript";
-import React, { useEffect, useMemo, useState } from "react";
+import React from "react";
 import { useTrails } from "JS/React/Hooks/Trails";
-import { Trail, TrailsFilter } from "JS/Models/General";
+import { TrailsFilter } from "JS/Models/General";
 import { SingleTrail } from "./SingleTrail";
-import {
-  paginate,
-  PaginatedData,
-  PaginationInfo,
-} from "JS/Typescript/Pagination";
-import Pagination, {
-  PaginationProps,
-} from "JS/React/Components/Pagination/Pagination";
+import { AppRoundedButton } from "JS/React/Components/AppRoundedButton";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -26,6 +19,14 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   bolderText: {
     fontWeight: "bold",
+  },
+  pageButtonWrapper: {
+    display: "flex",
+    justifyContent: "space-between",
+    padding: theme.spacing(2, 2),
+  },
+  pageButton: {
+    width: "100px",
   },
 }));
 
@@ -40,42 +41,14 @@ export interface TrailsProps
     TrailsClassKey
   > {
   filter: TrailsFilter;
-  paginationProps?: PaginationProps;
+  setFilter: (filter: TrailsFilter) => void;
 }
 
 export const Trails = (props: TrailsProps) => {
   const classes = useStyles(props);
-  const { filter, className, paginationProps, ...rest } = props;
+  const { filter, setFilter, className, ...rest } = props;
 
-  const { trails, loading } = useTrails(filter);
-
-  const [paginationInfo, setPaginationInfo] = useState<PaginationInfo>({
-    currentPage: 1,
-    perPage: 5,
-    total: trails ? trails.length : 0,
-  });
-
-  useEffect(() => {
-    setPaginationInfo({
-      currentPage: 1,
-      perPage: 5,
-      total: trails ? trails.length : 0,
-    });
-  }, [trails]);
-
-  const paginatedData: PaginatedData<Trail> = useMemo(() => {
-    if (!loading && trails) {
-      return paginate(trails, paginationInfo);
-    }
-    return paginate([], paginationInfo);
-  }, [trails, paginationInfo]);
-
-  const onPaginationChange = (page) => {
-    setPaginationInfo({
-      ...paginationInfo,
-      currentPage: page,
-    });
-  };
+  const { trails, loading, lastVisible, firstVisible } = useTrails(filter);
 
   return (
     <div className={clsx(className, classes.root)}>
@@ -96,19 +69,33 @@ export const Trails = (props: TrailsProps) => {
         {!loading &&
           trails &&
           trails.length &&
-          paginatedData &&
-          paginatedData.data &&
-          paginatedData.data.map((trail) => <SingleTrail trail={trail} />)}
+          trails.map((trail, idx) => <SingleTrail key={idx} trail={trail} />)}
       </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        {paginationInfo && paginationInfo.total > 0 ? (
-          <Pagination info={paginationInfo} onChange={onPaginationChange} />
-        ) : null}
+      <div className={classes.pageButtonWrapper}>
+        <AppRoundedButton
+          className={classes.pageButton}
+          onClick={() =>
+            setFilter({
+              ...filter,
+              page: "prev",
+              firstVisible: firstVisible,
+            })
+          }
+        >
+          Previous
+        </AppRoundedButton>
+        <AppRoundedButton
+          className={classes.pageButton}
+          onClick={() =>
+            setFilter({
+              ...filter,
+              page: "next",
+              lastVisible: lastVisible,
+            })
+          }
+        >
+          Next
+        </AppRoundedButton>
       </div>
     </div>
   );

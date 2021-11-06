@@ -113,8 +113,6 @@ export const SearchTrails = (props: SearchTrailsProps) => {
   const [durationAnchorEl, setDurationAnchorEl] =
     React.useState<HTMLButtonElement | null>(null);
 
-  const { trails, loading } = useTrails();
-
   return (
     <Layout disableFooter>
       <div className={classes.root}>
@@ -141,7 +139,9 @@ export const SearchTrails = (props: SearchTrailsProps) => {
                 label="Country"
               >
                 {getNames().map((name) => (
-                  <MenuItem value={getCode(name)}>{name}</MenuItem>
+                  <MenuItem key={name} value={getCode(name)}>
+                    {name}
+                  </MenuItem>
                 ))}
               </Select>
             </FormControl>
@@ -167,7 +167,9 @@ export const SearchTrails = (props: SearchTrailsProps) => {
                 }}
               >
                 {makeEnumArray(ActivityType).map((type) => (
-                  <MenuItem value={type}>{type}</MenuItem>
+                  <MenuItem key={type} value={type}>
+                    {type}
+                  </MenuItem>
                 ))}
               </Select>
             </FormControl>
@@ -311,7 +313,7 @@ export const SearchTrails = (props: SearchTrailsProps) => {
         </section>
         <Grid container className={classes.trailsAndMapContainer}>
           <Grid item md={6} sm={12} xs={12} className={classes.trailsContainer}>
-            <Trails filter={filter} />
+            <Trails filter={filter} setFilter={setFilter} />
           </Grid>
           <Grid item md={6} sm={12} xs={12} className={classes.mapContainer}>
             <Map defaultCenter={[50.879, 4.6997]} defaultZoom={11}>

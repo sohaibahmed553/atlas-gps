@@ -1,3 +1,5 @@
+import { QueryDocumentSnapshot, DocumentData } from "@firebase/firestore";
+
 export enum ActivityType {
   HIKING = "Hiking",
   CYCLING = "Cycling",
@@ -13,33 +15,38 @@ export enum ActivityType {
 }
 
 export interface TrailsFilter {
-  country: string;
+  country?: string;
   distance?: number;
   duration?: number;
-  name: string;
-  activity: ActivityType;
+  name?: string;
+  activity?: ActivityType;
+  page?: "next" | "prev";
+  lastVisible?: QueryDocumentSnapshot<DocumentData>;
+  firstVisible?: QueryDocumentSnapshot<DocumentData>;
 }
 
 export interface Trail {
-  gDistanceMetric: number;
-  scalars: number[];
-  diffSec: number;
-  author: string;
+  actType: string;
   alt: string;
-  description: string;
+  author: string;
+  country_code?: string;
+  diffSec: number;
   dist: string;
-  lon: number;
-  title: string;
-  version: string;
-  geoPoints: number[];
   duration: string;
-  latLon: string;
   elev: string;
   elevationM: number;
-  actType: string;
+  file_name: string;
+  gDistanceMetric: number;
   id: string;
   isRoute: number;
   lat: number;
+  latLon: string;
+  lon: number;
+  title: string;
   tripTime: string;
+  version: string;
+  scalars: number[];
+  description: string;
+  geoPoints: number[];
   imageUrl?: string;
 }
