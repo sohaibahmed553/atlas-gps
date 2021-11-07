@@ -131,6 +131,7 @@ export const AppNavbar = (props: AppNavbarProps) => {
         }}
         width={100}
         src={getImageSrc(ImageNames.ALTLAS_LOGO)}
+        onClick={() => history.push(routeProvider.react.root())}
       />
 
       <div className={classes.navItems}>

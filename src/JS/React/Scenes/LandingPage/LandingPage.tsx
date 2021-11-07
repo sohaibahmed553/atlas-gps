@@ -15,6 +15,8 @@ import { Download } from "./Download";
 import { AppRoundedButton } from "JS/React/Components/AppRoundedButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Layout } from "../Layout";
+import { useHistory } from "react-router-dom";
+import { useRouting } from "JS/React/Hooks/Routes";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -102,6 +104,11 @@ export const LandingPage = (props: LandingPageProps) => {
   const classes = useStyles(props);
   const { className, ...rest } = props;
 
+  const { routeBuilder } = useRouting();
+  const routeProvider = routeBuilder();
+
+  const history = useHistory();
+
   const rotatorContent = [
     {
       text: "TREKKERS",
@@ -151,7 +158,11 @@ export const LandingPage = (props: LandingPageProps) => {
         </div>
 
         <div className={classes.exploreButtonContainer}>
-          <AppRoundedButton buttonVariant="blue" padding="large">
+          <AppRoundedButton
+            buttonVariant="blue"
+            padding="large"
+            onClick={() => history.push(routeProvider.react.searchTrails())}
+          >
             <FontAwesomeIcon
               className={classes.searchIcon}
               icon={["fas", "search-location"]}
