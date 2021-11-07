@@ -20,7 +20,7 @@ import { useRouting } from "JS/React/Hooks/Routes";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    marginTop: theme.spacing(6),
+    marginTop: `calc(${theme.navbar.height} + 48px)`,
   },
   titleContainer: {
     display: "flex",

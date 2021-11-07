@@ -25,6 +25,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
+    position: "fixed",
+    width: "100%",
+    zIndex: 20,
+    top: 0,
     // marginBottom: theme.spacing(6),
     [theme.breakpoints.down(theme.navbar.breakpoint)]: {
       paddingLeft: "20px",

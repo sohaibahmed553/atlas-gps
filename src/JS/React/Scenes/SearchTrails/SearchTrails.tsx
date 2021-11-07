@@ -25,6 +25,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     height: "calc(100vh - 60px)",
     maxHeight: "calc(100vh - 60px)",
     background: theme.palette.grey[200],
+    marginTop: theme.navbar.height,
   },
 
   accordionContainer: {

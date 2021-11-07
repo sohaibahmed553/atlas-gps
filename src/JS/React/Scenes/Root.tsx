@@ -1,6 +1,5 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import { AppNavbar } from "../Components/AppNavbar";
 import { useRouting } from "../Hooks/Routes";
 import { LandingPage } from "./LandingPage/LandingPage";
 import { SearchTrails } from "./SearchTrails/SearchTrails";
