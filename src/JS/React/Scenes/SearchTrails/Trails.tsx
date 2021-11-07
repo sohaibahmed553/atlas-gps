@@ -73,6 +73,7 @@ export const Trails = (props: TrailsProps) => {
       </div>
       <div className={classes.pageButtonWrapper}>
         <AppRoundedButton
+          buttonVariant="blue"
           className={classes.pageButton}
           onClick={() =>
             setFilter({
@@ -85,6 +86,7 @@ export const Trails = (props: TrailsProps) => {
           Previous
         </AppRoundedButton>
         <AppRoundedButton
+          buttonVariant="blue"
           className={classes.pageButton}
           onClick={() =>
             setFilter({
