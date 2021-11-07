@@ -1,18 +1,32 @@
 import { QueryDocumentSnapshot, DocumentData } from "@firebase/firestore";
 
 export enum ActivityType {
-  HIKING = "Hiking",
-  CYCLING = "Cycling",
-  CLIMBING = "Climbing",
-  AVIATION = "Aviation",
-  WINTER_SPORTS = "Winter_sports",
-  SAILING = "Sailing",
-  DRIVING = "Driving",
-  MOTORCYCLING = "Motorcycling",
-  WALKING = "Walking",
-  DOG_WALKING = "Dog_walking",
-  TREKKING = "Trekking",
+  HIKING = "0",
+  RUNNING = "1",
+  CYCLING = "2",
+  CLIMBING = "3",
+  AVIATION = "4",
+  WINTER_SPORTS = "5",
+  SAILING = "6",
+  DRIVING = "7",
+  MOTORCYCLING = "8",
+  WALKING = "9",
+  DOG_WALKING = "10",
+  TREKKING = "11",
 }
+// export enum ActivityType {
+//   HIKING = "Hiking",
+//   CYCLING = "Cycling",
+//   CLIMBING = "Climbing",
+//   AVIATION = "Aviation",
+//   WINTER_SPORTS = "Winter_sports",
+//   SAILING = "Sailing",
+//   DRIVING = "Driving",
+//   MOTORCYCLING = "Motorcycling",
+//   WALKING = "Walking",
+//   DOG_WALKING = "Dog_walking",
+//   TREKKING = "Trekking",
+// }
 
 export interface TrailsFilter {
   country?: string;
@@ -26,7 +40,7 @@ export interface TrailsFilter {
 }
 
 export interface Trail {
-  actType: string;
+  actType: number;
   alt: string;
   author: string;
   country_code?: string;
