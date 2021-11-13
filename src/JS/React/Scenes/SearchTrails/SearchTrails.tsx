@@ -1,22 +1,13 @@
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Grid,
-  makeStyles,
-  StandardProps,
-  Theme,
-  Typography,
-} from "@material-ui/core";
+import { Button, makeStyles, StandardProps, Theme } from "@material-ui/core";
 import { StyleClassKey } from "JS/Typescript";
 import React, { useState } from "react";
 import { Layout } from "../Layout";
 import { ActivityType, TrailsFilter } from "JS/Models/General";
-import { AppRoundedButton } from "../../Components/AppRoundedButton";
+
 import { Trails } from "./Trails";
 import { Map, Marker, ZoomControl } from "pigeon-maps";
-import { FiltersList } from "./FiltersList";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+
+import { FiltersModal } from "./FiltersModal";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -33,6 +24,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: theme.spacing(0, 2),
     alignItems: "center",
     justifyContent: "center",
+    marginTop: theme.spacing(4),
+    marginBottom: theme.spacing(2),
   },
 
   accordion: {
@@ -104,51 +97,48 @@ export const SearchTrails = (props: SearchTrailsProps) => {
   const { className, ...rest } = props;
 
   const [filter, setFilter] = useState<TrailsFilter>({
-    activity: null,
-    country: "",
-    distance: null,
-    duration: null,
-    name: "",
+    activity: ActivityType.HIKING,
+    country: "US",
+    maxDistance: null,
+    minDistance: null,
+    minDuration: 0,
+    maxDuration: 50,
+    comment: "newyork",
+    filterByDistance: false,
+    page: "0",
   });
+
+  const [trailsFilter, setTrailsFilter] = useState<TrailsFilter>(filter);
+  const [filterModalOpen, setFilterModalOpen] = useState<boolean>(false);
 
   return (
     <Layout disableFooter>
       <div className={classes.root}>
         <div className={classes.accordionContainer}>
-          <Accordion className={classes.accordion}>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <Typography className={classes.heading}>Filter</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <section className={classes.buttonSection}>
-                <FiltersList setFilter={setFilter} filter={filter} />
-                <div className={classes.buttonLeftMargin}>
-                  <AppRoundedButton buttonVariant="blue" padding="normal">
-                    <Typography variant="body1">Search</Typography>
-                  </AppRoundedButton>
-                </div>
-              </section>
-            </AccordionDetails>
-          </Accordion>
+          <Button
+            onClick={() => setFilterModalOpen(true)}
+            color="primary"
+            variant="outlined"
+          >
+            Filters
+          </Button>
+
+          <FiltersModal
+            filter={filter}
+            setFilter={setFilter}
+            open={filterModalOpen}
+            onClose={() => {
+              setFilterModalOpen(false);
+            }}
+            onSearch={(filter) => {
+              setTrailsFilter(filter);
+            }}
+          />
         </div>
-        {/* <Grid container className={classes.trailsAndMapContainer}>
-          <Grid item md={6} sm={12} xs={12} className={classes.trailsContainer}>
-            <Trails filter={filter} setFilter={setFilter} />
-          </Grid>
-          <Grid item md={6} sm={12} xs={12} className={classes.mapContainer}>
-            <Map defaultCenter={[50.879, 4.6997]} defaultZoom={11}>
-              <ZoomControl />
-              <Marker width={50} anchor={[50.879, 4.6997]} />
-            </Map>
-          </Grid>
-        </Grid> */}
+
         <div className={classes.trailsAndMapContainer}>
           <div className={classes.trailsContainer}>
-            <Trails filter={filter} setFilter={setFilter} />
+            <Trails filter={trailsFilter} setFilter={setTrailsFilter} />
           </div>
           <div className={classes.mapContainer}>
             <Map defaultCenter={[50.879, 4.6997]} defaultZoom={11}>

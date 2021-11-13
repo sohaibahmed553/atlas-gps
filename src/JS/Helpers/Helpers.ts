@@ -1,3 +1,4 @@
+import { config } from "JS/Config";
 import { ActivityType } from "JS/Models/General";
 
 export const makeEnumArray = (enumObject) => {
@@ -38,4 +39,8 @@ export const activityTypeToString = (actType: ActivityType) => {
     default:
       return "Unknown";
   }
+};
+
+export const getTrailImageSrc = (fName: string) => {
+  return `${config.baseApiUrl}/image?fname=${fName.replace(".json", ".jpg")}`;
 };

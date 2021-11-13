@@ -69,6 +69,9 @@ export const FiltersList = (props: FiltersListProps) => {
     duration: false,
   });
 
+  const [distanceSlider, setDistanceSlider] = useState<number[]>([0, 200]);
+  const [durationSlider, setDurationSlider] = useState<number[]>([0, 100]);
+
   return (
     <div>
       <FormControl
@@ -130,11 +133,11 @@ export const FiltersList = (props: FiltersListProps) => {
         label="Search (name)"
         variant="outlined"
         className={clsx(classes.buttonLeftMargin, classes.topFields)}
-        value={filter.name}
+        value={filter.comment}
         onChange={(e) => {
           setFilter({
             ...filter,
-            name: e.target.value,
+            comment: e.target.value,
           });
         }}
       />
@@ -183,13 +186,17 @@ export const FiltersList = (props: FiltersListProps) => {
               </Typography>
               <Slider
                 step={0.1}
-                value={filter.distance}
-                onChange={(e, newValue: number) => {
+                value={distanceSlider}
+                onChange={(e, newValue: number[]) => {
+                  setDistanceSlider(newValue);
                   setFilter({
                     ...filter,
-                    distance: newValue,
+                    minDistance: newValue[0],
+                    maxDistance: newValue[1],
                   });
                 }}
+                max={200}
+                min={0}
                 valueLabelDisplay="auto"
                 aria-labelledby="range-slider"
               />
@@ -241,11 +248,13 @@ export const FiltersList = (props: FiltersListProps) => {
               </Typography>
               <Slider
                 step={0.1}
-                value={filter.duration}
-                onChange={(e, newValue: number) => {
+                value={durationSlider}
+                onChange={(e, newValue: number[]) => {
+                  setDurationSlider(newValue);
                   setFilter({
                     ...filter,
-                    duration: newValue,
+                    minDuration: newValue[0],
+                    maxDuration: newValue[1],
                   });
                 }}
                 valueLabelDisplay="auto"

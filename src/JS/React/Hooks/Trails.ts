@@ -1,32 +1,23 @@
-import { TrailsFilter, Trail } from "JS/Models/General";
+import { TrailsFilter, Trail, TrailsResponse } from "JS/Models/General";
 import { TrailsService } from "JS/Services/Trails/Service";
 import { useCallback, useEffect, useState } from "react";
-import { QueryDocumentSnapshot, DocumentData } from "@firebase/firestore";
 
 const service = new TrailsService();
 
 export const useTrails = (filter: TrailsFilter = null) => {
   const [loading, setLoading] = useState(false);
   const [trails, setTrails] = useState<Trail[]>(null);
-  const [lastVisible, setLastVisible] =
-    useState<QueryDocumentSnapshot<DocumentData>>(null);
-  const [firstVisible, setFirstVisible] =
-    useState<QueryDocumentSnapshot<DocumentData>>(null);
+  const [response, setResponse] = useState<TrailsResponse>(null);
 
   const refetch = useCallback((filter: TrailsFilter) => {
     setLoading(true);
 
     return service
-      .getTrailsSnapshotByFilter(filter)
+      .getTrailsByFilter(filter)
       .then((val) => {
-        const trails = val.docs.map((doc) => doc.data()) as Trail[];
-
-        if (val.size) {
-          setLastVisible(val.docs[val.docs.length - 1]);
-          setFirstVisible(val.docs[0]);
-        }
-
-        setTrails(trails);
+        setResponse(val);
+        setTrails(val.trails);
+        console.log("response", val);
         return val;
       })
       .finally(() => {
@@ -43,8 +34,7 @@ export const useTrails = (filter: TrailsFilter = null) => {
   return {
     refetch,
     trails,
-    lastVisible,
-    firstVisible,
+    response,
     loading,
   };
 };

@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   pageButtonWrapper: {
     display: "flex",
-    justifyContent: "space-between",
+    justifyContent: "end",
     padding: theme.spacing(2, 2),
   },
   pageButton: {
@@ -48,7 +48,7 @@ export const Trails = (props: TrailsProps) => {
   const classes = useStyles(props);
   const { filter, setFilter, className, ...rest } = props;
 
-  const { trails, loading, lastVisible, firstVisible } = useTrails(filter);
+  const { trails, loading, response: trailsRes } = useTrails(filter);
 
   return (
     <div className={clsx(className, classes.root)}>
@@ -62,6 +62,7 @@ export const Trails = (props: TrailsProps) => {
         style={{
           textAlign: "center",
           height: "100%",
+          minHeight: "100px",
           overflow: "auto",
         }}
       >
@@ -70,9 +71,12 @@ export const Trails = (props: TrailsProps) => {
           trails &&
           trails.length &&
           trails.map((trail, idx) => <SingleTrail key={idx} trail={trail} />)}
+        {!loading && !trails && (
+          <Typography variant="body1">No Trails to show</Typography>
+        )}
       </div>
       <div className={classes.pageButtonWrapper}>
-        <AppRoundedButton
+        {/* <AppRoundedButton
           buttonVariant="blue"
           className={classes.pageButton}
           onClick={() =>
@@ -84,15 +88,14 @@ export const Trails = (props: TrailsProps) => {
           }
         >
           Previous
-        </AppRoundedButton>
+        </AppRoundedButton> */}
         <AppRoundedButton
           buttonVariant="blue"
           className={classes.pageButton}
           onClick={() =>
             setFilter({
               ...filter,
-              page: "next",
-              lastVisible: lastVisible,
+              page: trailsRes.page,
             })
           }
         >

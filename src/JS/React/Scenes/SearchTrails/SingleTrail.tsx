@@ -6,10 +6,11 @@ import {
   Typography,
 } from "@material-ui/core";
 import clsx from "clsx";
+import { getTrailImageSrc } from "JS/Helpers/Helpers";
 import { getImageSrc, ImageNames } from "JS/Helpers/Media";
 import { Trail } from "JS/Models/General";
 import { StyleClassKey } from "JS/Typescript";
-import React from "react";
+import React, { useState } from "react";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -32,7 +33,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   nameImage: {
-    width: 150,
+    width: 200,
+    height: 200,
+    objectFit: "contain",
     [theme.breakpoints.down("md")]: {
       width: "100%",
     },
@@ -67,6 +70,8 @@ export const SingleTrail = (props: SingleTrailProps) => {
   const classes = useStyles(props);
   const { trail, className, ...rest } = props;
 
+  const [srcErr, setSrcErr] = useState(false);
+
   return (
     <div className={clsx(className, classes.root)}>
       <Paper className={classes.paper} elevation={0}>
@@ -76,10 +81,13 @@ export const SingleTrail = (props: SingleTrailProps) => {
           <img
             className={classes.nameImage}
             src={
-              trail.imageUrl
-                ? trail.imageUrl
-                : getImageSrc(ImageNames.DUMMY_IMAGE)
+              srcErr
+                ? getImageSrc(ImageNames.DUMMY_IMAGE)
+                : getTrailImageSrc(trail.file_name)
             }
+            onError={() => {
+              setSrcErr(true);
+            }}
           />
         </div>
         <div

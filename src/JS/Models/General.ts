@@ -14,27 +14,22 @@ export enum ActivityType {
   DOG_WALKING = "10",
   TREKKING = "11",
 }
-// export enum ActivityType {
-//   HIKING = "Hiking",
-//   CYCLING = "Cycling",
-//   CLIMBING = "Climbing",
-//   AVIATION = "Aviation",
-//   WINTER_SPORTS = "Winter_sports",
-//   SAILING = "Sailing",
-//   DRIVING = "Driving",
-//   MOTORCYCLING = "Motorcycling",
-//   WALKING = "Walking",
-//   DOG_WALKING = "Dog_walking",
-//   TREKKING = "Trekking",
-// }
 
+export interface TrailsResponse {
+  trails: Trail[];
+  page: string;
+  amount: number;
+}
 export interface TrailsFilter {
   country?: string;
-  distance?: number;
-  duration?: number;
-  name?: string;
+  minDistance?: number;
+  maxDistance?: number;
+  minDuration?: number;
+  maxDuration?: number;
+  filterByDistance?: boolean;
+  comment?: string;
   activity?: ActivityType;
-  page?: "next" | "prev";
+  page?: string;
   lastVisible?: QueryDocumentSnapshot<DocumentData>;
   firstVisible?: QueryDocumentSnapshot<DocumentData>;
 }
@@ -62,5 +57,4 @@ export interface Trail {
   scalars: number[];
   description: string;
   geoPoints: number[];
-  imageUrl?: string;
 }
