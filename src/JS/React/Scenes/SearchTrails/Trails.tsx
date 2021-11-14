@@ -75,6 +75,7 @@ export const Trails = (props: TrailsProps) => {
           textAlign: "center",
           height: "100%",
           overflow: "auto",
+          minHeight: "100px",
         }}
       >
         {loading && <CircularProgress />}
