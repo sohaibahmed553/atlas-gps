@@ -17,6 +17,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Layout } from "../Layout";
 import { useHistory } from "react-router-dom";
 import { useRouting } from "JS/React/Hooks/Routes";
+import { MapSection } from "./MapSection";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -172,16 +173,7 @@ export const LandingPage = (props: LandingPageProps) => {
         </div>
 
         <section className={classes.mapContainer}>
-          <div
-            style={{
-              width: "85vw",
-            }}
-          >
-            <Map height={600} defaultCenter={[50.879, 4.6997]} defaultZoom={11}>
-              <ZoomControl />
-              <Marker width={50} anchor={[50.879, 4.6997]} />
-            </Map>
-          </div>
+          <MapSection />
         </section>
 
         <div className={classes.divider}></div>

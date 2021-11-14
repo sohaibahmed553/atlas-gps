@@ -76,3 +76,45 @@ export const getVideoSrc = (name: VideoNames) => {
       return "https://www.youtube.com/embed/hqGvXB7tVuw";
   }
 };
+
+export const mapView = {
+  google: {
+    streets: {
+      url: "http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}",
+      subDomains: ["mt0", "mt1", "mt2", "mt3"],
+    },
+    hybrid: {
+      url: "http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}",
+      subDomains: ["mt0", "mt1", "mt2", "mt3"],
+    },
+    satellite: {
+      url: "http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
+      subDomains: ["mt0", "mt1", "mt2", "mt3"],
+    },
+    terrain: {
+      url: "http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}",
+      subDomains: ["mt0", "mt1", "mt2", "mt3"],
+    },
+  },
+  mapBox: {
+    url: "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZXJvbDEiLCJhIjoiY2tldmlmNW83NDVrbzJybnA5NG4wNGRmZCJ9.Q7iDNnSEB_kmHV6StdqOLg",
+    satellite: {
+      id: "mapbox/satellite-v9",
+      attribution:
+        'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+        'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+      maxZoom: 19,
+      tileSize: 512,
+      zoomOffset: -1,
+    },
+    street: {
+      id: "mapbox/streets-v11",
+      attribution:
+        'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+        'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+      maxZoom: 19,
+      tileSize: 512,
+      zoomOffset: -1,
+    },
+  },
+};

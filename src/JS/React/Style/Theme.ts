@@ -69,7 +69,8 @@ function createAppTheme(options: ThemeOptions) {
       ...({
         useNextVariants: true,
       } as any),
-      fontFamily: "Roboto, Helvetica, Arial, sans-serif",
+      // fontFamily: "Roboto, Helvetica, Arial, sans-serif",
+      fontFamily: "Montserrat, sans-serif",
       h3: {
         [theme.breakpoints.down("sm")]: {
           fontSize: "2.5rem",

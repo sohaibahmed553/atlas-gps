@@ -17,7 +17,6 @@ export const useTrails = (filter: TrailsFilter = null) => {
       .then((val) => {
         setResponse(val);
         setTrails(val.trails);
-        console.log("response", val);
         return val;
       })
       .finally(() => {

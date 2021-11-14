@@ -13,5 +13,4 @@ export const config = {
   //   measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
   // },
   baseApiUrl: process.env.REACT_APP_BASE_API_URL,
-  // baseApiUrl: "https://altimeter-alarm.herokuapp.com",
 };

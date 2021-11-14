@@ -3,9 +3,16 @@ import { StyleClassKey } from "JS/Typescript";
 import React, { useState } from "react";
 import { Layout } from "../Layout";
 import { ActivityType, TrailsFilter } from "JS/Models/General";
+import { mapView } from "JS/Helpers/Media";
 
 import { Trails } from "./Trails";
-import { Map, Marker, ZoomControl } from "pigeon-maps";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  LayersControl,
+} from "react-leaflet";
 
 import { FiltersModal } from "./FiltersModal";
 
@@ -140,12 +147,31 @@ export const SearchTrails = (props: SearchTrailsProps) => {
           <div className={classes.trailsContainer}>
             <Trails filter={trailsFilter} setFilter={setTrailsFilter} />
           </div>
-          <div className={classes.mapContainer}>
-            <Map defaultCenter={[50.879, 4.6997]} defaultZoom={11}>
-              <ZoomControl />
-              <Marker width={50} anchor={[50.879, 4.6997]} />
-            </Map>
-          </div>
+          <MapContainer
+            center={[51.505, -0.09]}
+            zoom={13}
+            className={classes.mapContainer}
+          >
+            <LayersControl position="topright">
+              <LayersControl.BaseLayer checked name="Street Map">
+                <TileLayer
+                  url={mapView.mapBox.url}
+                  {...mapView.mapBox.street}
+                />
+              </LayersControl.BaseLayer>
+              <LayersControl.BaseLayer name="Satellite Map">
+                <TileLayer
+                  url={mapView.mapBox.url}
+                  {...mapView.mapBox.satellite}
+                />
+              </LayersControl.BaseLayer>
+            </LayersControl>
+            <Marker position={[51.505, -0.09]}>
+              <Popup>
+                A pretty CSS3 popup. <br /> Easily customizable.
+              </Popup>
+            </Marker>
+          </MapContainer>
         </div>
       </div>
     </Layout>
