@@ -50,8 +50,6 @@ export const Trails = (props: TrailsProps) => {
 
   const { trails, loading, response: trailsRes } = useTrails(filter);
 
-  console.log("base api url", process.env.REACT_APP_BASE_API_URL);
-
   return (
     <div className={clsx(className, classes.root)}>
       {!loading && trails && (

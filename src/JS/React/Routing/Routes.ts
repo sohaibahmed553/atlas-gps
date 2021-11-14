@@ -11,6 +11,7 @@ export const routesForContext = () => () => {
       api: ((base: string) => ({
         trails: {
           trailsIndex: (filter: TrailsFilter) => {
+            console.log("base url", base);
             let trailsRoute = `${base}/trails?country=${filter.country}&page=${filter.page}`;
 
             if (filter.comment) {
