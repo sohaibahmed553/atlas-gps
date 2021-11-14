@@ -15,6 +15,7 @@ import {
 } from "react-leaflet";
 
 import { FiltersModal } from "./FiltersModal";
+import { useTrails } from "JS/React/Hooks/Trails";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -30,7 +31,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: "flex",
     padding: theme.spacing(0, 2),
     alignItems: "center",
-    justifyContent: "center",
+    // justifyContent: "center",
     marginTop: theme.spacing(4),
     marginBottom: theme.spacing(2),
   },
@@ -118,6 +119,8 @@ export const SearchTrails = (props: SearchTrailsProps) => {
   const [trailsFilter, setTrailsFilter] = useState<TrailsFilter>(filter);
   const [filterModalOpen, setFilterModalOpen] = useState<boolean>(false);
 
+  const { trails, loading, response: trailsRes } = useTrails(trailsFilter);
+
   return (
     <Layout disableFooter>
       <div className={classes.root}>
@@ -145,7 +148,13 @@ export const SearchTrails = (props: SearchTrailsProps) => {
 
         <div className={classes.trailsAndMapContainer}>
           <div className={classes.trailsContainer}>
-            <Trails filter={trailsFilter} setFilter={setTrailsFilter} />
+            <Trails
+              trails={trails}
+              loading={loading}
+              trailsRes={trailsRes}
+              filter={trailsFilter}
+              setFilter={setTrailsFilter}
+            />
           </div>
           <MapContainer
             center={[51.505, -0.09]}

@@ -1,3 +1,4 @@
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { config } from "JS/Config";
 import { ActivityType } from "JS/Models/General";
 
@@ -43,4 +44,43 @@ export const activityTypeToString = (actType: ActivityType) => {
 
 export const getTrailImageSrc = (fName: string) => {
   return `${config.baseApiUrl}/image?fname=${fName.replace(".json", ".jpg")}`;
+};
+
+export const getIconsByActivityType = (actType: ActivityType): IconProp => {
+  switch (actType) {
+    case ActivityType.HIKING:
+      return ["fas", "hiking"];
+    case ActivityType.RUNNING:
+      return ["fas", "running"];
+    case ActivityType.CYCLING:
+      return ["fas", "biking"];
+    case ActivityType.CLIMBING:
+      return ["fas", "hiking"];
+    case ActivityType.AVIATION:
+      return ["fab", "fly"];
+    case ActivityType.WINTER_SPORTS:
+      return ["fas", "skating"];
+    case ActivityType.SAILING:
+      return ["fas", "ship"];
+    case ActivityType.DRIVING:
+      return ["fas", "car"];
+    case ActivityType.MOTORCYCLING:
+      return ["fas", "motorcycle"];
+    case ActivityType.WALKING:
+      return ["fas", "walking"];
+    case ActivityType.DOG_WALKING:
+      return ["fas", "dog"];
+    case ActivityType.TREKKING:
+      return ["fas", "hiking"];
+    default:
+      return ["fas", "hiking"];
+  }
+};
+
+export const normalizeValue = (val: string): string => {
+  if (val && val.length) {
+    return val;
+  } else {
+    return "Unknown";
+  }
 };

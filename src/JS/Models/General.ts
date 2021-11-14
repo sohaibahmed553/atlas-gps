@@ -38,7 +38,9 @@ export interface Trail {
   actType: number;
   alt: string;
   author: string;
-  country_code?: string;
+  country_code: string;
+  country: string;
+  city: string;
   diffSec: number;
   dist: string;
   duration: string;
@@ -53,8 +55,8 @@ export interface Trail {
   lon: number;
   title: string;
   tripTime: string;
-  version: string;
-  scalars: number[];
-  description: string;
-  geoPoints: number[];
+  version?: string;
+  scalars?: number[];
+  description?: string;
+  geoPoints?: number[];
 }

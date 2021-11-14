@@ -7,11 +7,11 @@ import {
 } from "@material-ui/core";
 import clsx from "clsx";
 import { StyleClassKey } from "JS/Typescript";
-import React from "react";
-import { useTrails } from "JS/React/Hooks/Trails";
-import { TrailsFilter } from "JS/Models/General";
+import React, { useState } from "react";
+import { Trail, TrailsFilter, TrailsResponse } from "JS/Models/General";
 import { SingleTrail } from "./SingleTrail";
 import { AppRoundedButton } from "JS/React/Components/AppRoundedButton";
+import { TrailsDetailModal } from "./TrailDetailModal";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -42,16 +42,28 @@ export interface TrailsProps
   > {
   filter: TrailsFilter;
   setFilter: (filter: TrailsFilter) => void;
+  trails: Trail[];
+  loading: boolean;
+  trailsRes: TrailsResponse;
 }
 
 export const Trails = (props: TrailsProps) => {
   const classes = useStyles(props);
-  const { filter, setFilter, className, ...rest } = props;
+  const { filter, setFilter, className, trails, loading, trailsRes, ...rest } =
+    props;
 
-  const { trails, loading, response: trailsRes } = useTrails(filter);
+  const [dialogOpen, setDialogOpen] = useState<boolean>(false);
+  const [selectedTrail, setSelectedTrail] = useState<Trail>(null);
 
   return (
     <div className={clsx(className, classes.root)}>
+      {dialogOpen && (
+        <TrailsDetailModal
+          open={dialogOpen}
+          onClose={() => setDialogOpen(false)}
+          trail={selectedTrail}
+        />
+      )}
       {!loading && trails && (
         <Typography
           className={classes.bolderText}
@@ -70,7 +82,16 @@ export const Trails = (props: TrailsProps) => {
         {!loading &&
           trails &&
           trails.length &&
-          trails.map((trail, idx) => <SingleTrail key={idx} trail={trail} />)}
+          trails.map((trail, idx) => (
+            <SingleTrail
+              key={idx}
+              trail={trail}
+              onChoose={(trail: Trail) => {
+                setSelectedTrail(trail);
+                setDialogOpen(true);
+              }}
+            />
+          ))}
         {!loading && !trails && (
           <Typography variant="body1">No Trails to show</Typography>
         )}

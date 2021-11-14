@@ -23,6 +23,15 @@ import {
   faComments,
   faAngleDoubleLeft,
   faAngleDoubleRight,
+  faHiking,
+  faRunning,
+  faBiking,
+  faSkating,
+  faShip,
+  faCar,
+  faMotorcycle,
+  faWalking,
+  faDog,
 } from "@fortawesome/free-solid-svg-icons";
 import { faCompass } from "@fortawesome/free-regular-svg-icons";
 import {
@@ -31,6 +40,7 @@ import {
   faTwitter,
   faPinterestP,
   faInstagram,
+  faFly,
 } from "@fortawesome/free-brands-svg-icons";
 
 library.add(
@@ -57,7 +67,17 @@ library.add(
   faPinterestP,
   faInstagram,
   faAngleDoubleLeft,
-  faAngleDoubleRight
+  faAngleDoubleRight,
+  faHiking,
+  faRunning,
+  faBiking,
+  faSkating,
+  faShip,
+  faCar,
+  faMotorcycle,
+  faWalking,
+  faDog,
+  faFly
 );
 
 const Root = () => {

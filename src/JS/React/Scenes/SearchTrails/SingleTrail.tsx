@@ -6,9 +6,9 @@ import {
   Typography,
 } from "@material-ui/core";
 import clsx from "clsx";
-import { getTrailImageSrc } from "JS/Helpers/Helpers";
+import { activityTypeToString, getTrailImageSrc } from "JS/Helpers/Helpers";
 import { getImageSrc, ImageNames } from "JS/Helpers/Media";
-import { Trail } from "JS/Models/General";
+import { ActivityType, Trail } from "JS/Models/General";
 import { StyleClassKey } from "JS/Typescript";
 import React, { useState } from "react";
 
@@ -37,6 +37,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     height: 200,
     objectFit: "contain",
     [theme.breakpoints.down("md")]: {
+      margin: theme.spacing(2, 0),
       width: "100%",
     },
   },
@@ -64,20 +65,40 @@ export interface SingleTrailProps
     SingleTrailClassKey
   > {
   trail: Trail;
+  onChoose: (trail: Trail) => void;
 }
 
 export const SingleTrail = (props: SingleTrailProps) => {
   const classes = useStyles(props);
-  const { trail, className, ...rest } = props;
+  const { trail, onChoose, className, ...rest } = props;
 
   const [srcErr, setSrcErr] = useState(false);
 
   return (
     <div className={clsx(className, classes.root)}>
-      <Paper className={classes.paper} elevation={0}>
+      <Paper
+        className={classes.paper}
+        elevation={0}
+        onClick={() => onChoose(trail)}
+      >
         <div className={classes.nameTypeContainer}>
-          <Typography variant="body1">{trail.title}</Typography>
-          <Typography variant="body1">{trail.actType}</Typography>
+          <div
+            style={{
+              textAlign: "left",
+            }}
+          >
+            <Typography
+              variant="body1"
+              style={{
+                marginBottom: "10px",
+              }}
+            >
+              {trail.title}
+            </Typography>
+            <Typography variant="body1">
+              {activityTypeToString(`${trail.actType}` as ActivityType)}
+            </Typography>
+          </div>
           <img
             className={classes.nameImage}
             src={
