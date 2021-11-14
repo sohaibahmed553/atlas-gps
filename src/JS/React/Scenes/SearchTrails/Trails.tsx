@@ -74,7 +74,6 @@ export const Trails = (props: TrailsProps) => {
         style={{
           textAlign: "center",
           height: "100%",
-          minHeight: "100px",
           overflow: "auto",
         }}
       >

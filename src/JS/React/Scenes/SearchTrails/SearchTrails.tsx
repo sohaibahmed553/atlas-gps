@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     flexDirection: "column",
     height: "calc(100vh - 60px)",
     maxHeight: "calc(100vh - 60px)",
-    background: theme.palette.grey[200],
+    background: theme.palette.grey[400],
     marginTop: theme.navbar.height,
   },
 
@@ -70,6 +70,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     paddingRight: theme.spacing(2),
     width: "100%",
     overflow: "auto",
+    flex: 1,
     [theme.breakpoints.down("md")]: {
       overflow: "unset",
       paddingRight: theme.spacing(0),
@@ -77,6 +78,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   mapContainer: {
+    flex: 2,
     minHeight: "50vh",
     width: "100%",
   },

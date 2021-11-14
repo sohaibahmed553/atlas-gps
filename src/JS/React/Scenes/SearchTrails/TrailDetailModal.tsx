@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: "100%",
   },
   authorContainer: {
-    background: theme.palette.grey[300],
+    background: theme.palette.grey[400],
     padding: theme.spacing(4),
     display: "flex",
     alignItems: "center",

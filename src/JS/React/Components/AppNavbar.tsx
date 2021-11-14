@@ -43,6 +43,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   navMenu: {
     margin: theme.spacing(0, 2.5),
+    fontWeight: 600,
     "&:hover": {
       cursor: "pointer",
       color: theme.palette.primary.main,
