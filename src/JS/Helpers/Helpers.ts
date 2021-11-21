@@ -84,3 +84,12 @@ export const normalizeValue = (val: string): string => {
     return "Unknown";
   }
 };
+
+export const getCordinates = (arr: number[]) => {
+  var coordinates = [];
+  for (var i = 0; i < arr.length - 1; ) {
+    coordinates.push([arr[i], arr[i + 1]]);
+    i = i + 2;
+  }
+  return coordinates;
+};

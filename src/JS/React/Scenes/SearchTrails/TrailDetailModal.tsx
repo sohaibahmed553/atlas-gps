@@ -19,13 +19,20 @@ import { ActivityType, Trail } from "JS/Models/General";
 import CloseIcon from "@material-ui/icons/Close";
 import {
   activityTypeToString,
+  getCordinates,
   getIconsByActivityType,
   normalizeValue,
 } from "JS/Helpers/Helpers";
-import { LayersControl, MapContainer, TileLayer } from "react-leaflet";
+import {
+  LayersControl,
+  MapContainer,
+  Polyline,
+  TileLayer,
+} from "react-leaflet";
 import { mapView } from "JS/Helpers/Media";
 import clsx from "clsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useGeoPoints } from "JS/React/Hooks/Trails";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {},
@@ -91,6 +98,8 @@ const Transition = React.forwardRef(function Transition(
 export const TrailsDetailModal = (props: TrailsDetailModalProps) => {
   const classes = useStyles(props);
   const { open, onClose, trail } = props;
+
+  const { points } = useGeoPoints(trail.file_name);
 
   return (
     <Dialog
@@ -163,8 +172,8 @@ export const TrailsDetailModal = (props: TrailsDetailModalProps) => {
               </div>
               <div>
                 <MapContainer
-                  center={[51.505, -0.09]}
-                  zoom={13}
+                  center={[trail.lat, trail.lon]}
+                  zoom={15}
                   className={classes.mapContainer}
                 >
                   <LayersControl position="topright">
@@ -181,6 +190,14 @@ export const TrailsDetailModal = (props: TrailsDetailModalProps) => {
                       />
                     </LayersControl.BaseLayer>
                   </LayersControl>
+                  {points && (
+                    <Polyline
+                      pathOptions={{
+                        color: "blue",
+                      }}
+                      positions={getCordinates(points)}
+                    />
+                  )}
                 </MapContainer>
               </div>
             </Grid>

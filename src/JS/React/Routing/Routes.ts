@@ -55,6 +55,7 @@ export const routesForContext = () => () => {
 
             return trailsRoute;
           },
+          geoPoints: (fname: string) => `${base}/geoPoints?fname=${fname}`,
         },
       }))(`${config.baseApiUrl}`),
     },

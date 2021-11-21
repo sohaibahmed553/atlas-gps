@@ -37,7 +37,7 @@ export const MapSection = (props: MapSectionProps) => {
         style={{
           width: "100%",
           height: "600px",
-          zIndex: -2,
+          zIndex: 1,
         }}
       >
         <LayersControl position="topright">
@@ -47,11 +47,11 @@ export const MapSection = (props: MapSectionProps) => {
           <LayersControl.BaseLayer name="Satellite Map">
             <TileLayer url={mapView.mapBox.url} {...mapView.mapBox.satellite} />
           </LayersControl.BaseLayer>
-          <Marker position={[51.505, -0.09]}>
+          {/* <Marker position={[51.505, -0.09]}>
             <Popup>
               A pretty CSS3 popup. <br /> Easily customizable.
             </Popup>
-          </Marker>
+          </Marker> */}
         </LayersControl>
       </MapContainer>
     </div>

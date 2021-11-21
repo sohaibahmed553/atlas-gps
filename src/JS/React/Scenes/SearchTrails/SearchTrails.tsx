@@ -78,10 +78,13 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   mapContainer: {
-    flex: 2,
-    minHeight: "50vh",
+    // flex: 2,
+    // minHeight: "50vh",
+    // width: "100%",
+    height: "100%",
     width: "100%",
   },
+  mapContainerWrapper: { flex: 2, width: "100%", minHeight: "50vh" },
   heading: {
     fontSize: theme.typography.pxToRem(15),
     fontWeight: theme.typography.fontWeightRegular,
@@ -148,6 +151,17 @@ export const SearchTrails = (props: SearchTrailsProps) => {
           />
         </div>
 
+        {/* {loading && (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <CircularProgress />
+          </div>
+        )} */}
+        {/* {!loading && ( */}
         <div className={classes.trailsAndMapContainer}>
           <div className={classes.trailsContainer}>
             <Trails
@@ -158,32 +172,46 @@ export const SearchTrails = (props: SearchTrailsProps) => {
               setFilter={setTrailsFilter}
             />
           </div>
-          <MapContainer
-            center={[51.505, -0.09]}
-            zoom={13}
-            className={classes.mapContainer}
-          >
-            <LayersControl position="topright">
-              <LayersControl.BaseLayer checked name="Street Map">
-                <TileLayer
-                  url={mapView.mapBox.url}
-                  {...mapView.mapBox.street}
-                />
-              </LayersControl.BaseLayer>
-              <LayersControl.BaseLayer name="Satellite Map">
-                <TileLayer
-                  url={mapView.mapBox.url}
-                  {...mapView.mapBox.satellite}
-                />
-              </LayersControl.BaseLayer>
-            </LayersControl>
-            <Marker position={[51.505, -0.09]}>
-              <Popup>
-                A pretty CSS3 popup. <br /> Easily customizable.
-              </Popup>
-            </Marker>
-          </MapContainer>
+
+          <div className={classes.mapContainerWrapper}>
+            {!loading && (
+              <MapContainer
+                center={
+                  trails && trails.length
+                    ? [trails[0].lat, trails[0].lon]
+                    : [36.061, -81.441]
+                }
+                zoom={13}
+                className={classes.mapContainer}
+              >
+                <LayersControl position="topright">
+                  <LayersControl.BaseLayer checked name="Street Map">
+                    <TileLayer
+                      url={mapView.mapBox.url}
+                      {...mapView.mapBox.street}
+                    />
+                  </LayersControl.BaseLayer>
+                  <LayersControl.BaseLayer name="Satellite Map">
+                    <TileLayer
+                      url={mapView.mapBox.url}
+                      {...mapView.mapBox.satellite}
+                    />
+                  </LayersControl.BaseLayer>
+                </LayersControl>
+                {trails &&
+                  trails.length &&
+                  trails.map((t) => {
+                    return (
+                      <Marker position={[t.lat, t.lon]}>
+                        <Popup>{t.title}</Popup>
+                      </Marker>
+                    );
+                  })}
+              </MapContainer>
+            )}
+          </div>
         </div>
+        {/* )} */}
       </div>
     </Layout>
   );

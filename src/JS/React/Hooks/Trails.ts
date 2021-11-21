@@ -37,3 +37,34 @@ export const useTrails = (filter: TrailsFilter = null) => {
     loading,
   };
 };
+
+export const useGeoPoints = (fname: string = null) => {
+  const [loading, setLoading] = useState(false);
+  const [response, setResponse] = useState<number[]>(null);
+
+  const refetch = useCallback((fname: string) => {
+    setLoading(true);
+
+    return service
+      .getGeoPoints(fname)
+      .then((val) => {
+        setResponse(val);
+        return val;
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (fname !== null) {
+      refetch(fname);
+    }
+  }, [fname]);
+
+  return {
+    refetch,
+    points: response,
+    loading,
+  };
+};
