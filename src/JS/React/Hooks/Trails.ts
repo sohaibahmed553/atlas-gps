@@ -1,4 +1,9 @@
-import { TrailsFilter, Trail, TrailsResponse } from "JS/Models/General";
+import {
+  TrailsFilter,
+  Trail,
+  TrailsResponse,
+  GeoIndexResponse,
+} from "JS/Models/General";
 import { TrailsService } from "JS/Services/Trails/Service";
 import { useCallback, useEffect, useState } from "react";
 
@@ -61,6 +66,35 @@ export const useGeoPoints = (fname: string = null) => {
       refetch(fname);
     }
   }, [fname]);
+
+  return {
+    refetch,
+    points: response,
+    loading,
+  };
+};
+
+export const useGeoPointsIndex = () => {
+  const [loading, setLoading] = useState(false);
+  const [response, setResponse] = useState<GeoIndexResponse[]>(null);
+
+  const refetch = useCallback(() => {
+    setLoading(true);
+
+    return service
+      .geoPointsIndex()
+      .then((val) => {
+        setResponse(val);
+        return val;
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+
+  useEffect(() => {
+    refetch();
+  }, []);
 
   return {
     refetch,

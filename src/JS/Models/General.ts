@@ -20,6 +20,12 @@ export interface TrailsResponse {
   page: string;
   amount: number;
 }
+export interface GeoIndexResponse {
+  title: string;
+  fname: string;
+  lat: number;
+  lon: number;
+}
 export interface TrailsFilter {
   country?: string;
   minDistance?: number;

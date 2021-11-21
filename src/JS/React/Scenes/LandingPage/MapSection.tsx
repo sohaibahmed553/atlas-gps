@@ -1,5 +1,7 @@
 import { makeStyles, StandardProps, Theme } from "@material-ui/core";
+import { getCordinates } from "JS/Helpers/Helpers";
 import { mapView } from "JS/Helpers/Media";
+import { useGeoPoints, useGeoPointsIndex } from "JS/React/Hooks/Trails";
 import { StyleClassKey } from "JS/Typescript";
 import React from "react";
 import {
@@ -8,6 +10,8 @@ import {
   Marker,
   Popup,
   LayersControl,
+  Polyline,
+  Circle,
 } from "react-leaflet";
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -25,6 +29,9 @@ export const MapSection = (props: MapSectionProps) => {
   const classes = useStyles(props);
   const { className, ...rest } = props;
 
+  const { points: allPoints } = useGeoPointsIndex();
+  const { points, refetch } = useGeoPoints();
+
   return (
     <div
       style={{
@@ -32,7 +39,11 @@ export const MapSection = (props: MapSectionProps) => {
       }}
     >
       <MapContainer
-        center={[51.505, -0.09]}
+        center={
+          allPoints && allPoints.length
+            ? [allPoints[0].lat, allPoints[0].lon]
+            : [36.061, -81.441]
+        }
         zoom={13}
         style={{
           width: "100%",
@@ -47,12 +58,43 @@ export const MapSection = (props: MapSectionProps) => {
           <LayersControl.BaseLayer name="Satellite Map">
             <TileLayer url={mapView.mapBox.url} {...mapView.mapBox.satellite} />
           </LayersControl.BaseLayer>
-          {/* <Marker position={[51.505, -0.09]}>
-            <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
-            </Popup>
-          </Marker> */}
+          {allPoints &&
+            allPoints.length &&
+            allPoints.map((p) => {
+              return (
+                <Circle
+                  center={[p.lat, p.lon]}
+                  pathOptions={{ fillColor: "blue" }}
+                  radius={200}
+                  eventHandlers={{
+                    click: (e) => {
+                      refetch(p.fname);
+                    },
+                  }}
+                >
+                  <Popup>{p.title}</Popup>
+                </Circle>
+                // <Marker
+                //   eventHandlers={{
+                //     click: (e) => {
+                //       refetch(p.fname);
+                //     },
+                //   }}
+                //   position={[p.lat, p.lon]}
+                // >
+                //   <Popup>{p.title}</Popup>
+                // </Marker>
+              );
+            })}
         </LayersControl>
+        {points && points.length && (
+          <Polyline
+            pathOptions={{
+              color: "blue",
+            }}
+            positions={getCordinates(points)}
+          />
+        )}
       </MapContainer>
     </div>
   );
