@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Dialog,
   DialogActions,
@@ -21,6 +21,7 @@ import {
   activityTypeToString,
   getCordinates,
   getIconsByActivityType,
+  getTrailImageSrc,
   normalizeValue,
 } from "JS/Helpers/Helpers";
 import {
@@ -29,7 +30,7 @@ import {
   Polyline,
   TileLayer,
 } from "react-leaflet";
-import { mapView } from "JS/Helpers/Media";
+import { getImageSrc, ImageNames, mapView } from "JS/Helpers/Media";
 import clsx from "clsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useGeoPoints } from "JS/React/Hooks/Trails";
@@ -77,6 +78,14 @@ const useStyles = makeStyles((theme: Theme) => ({
     borderBottom: `1px solid ${theme.palette.grey[400]}`,
     marginBottom: theme.spacing(2),
   },
+  nameImage: {
+    height: 200,
+    objectFit: "contain",
+    [theme.breakpoints.down("md")]: {
+      margin: theme.spacing(2, 0),
+      width: "100%",
+    },
+  },
 }));
 
 export type TrailsDetailModalClassKey = StyleClassKey<typeof useStyles>;
@@ -100,6 +109,8 @@ export const TrailsDetailModal = (props: TrailsDetailModalProps) => {
   const { open, onClose, trail } = props;
 
   const { points } = useGeoPoints(trail.file_name);
+
+  const [srcErr, setSrcErr] = useState(false);
 
   return (
     <Dialog
@@ -265,6 +276,19 @@ export const TrailsDetailModal = (props: TrailsDetailModalProps) => {
                     {normalizeValue(trail.duration)}
                   </Typography>
                 </div>
+              </Grid>
+              <Grid xs={12} className={classes.elementsGridContainer}>
+                <img
+                  className={classes.nameImage}
+                  src={
+                    srcErr
+                      ? getImageSrc(ImageNames.DUMMY_IMAGE)
+                      : getTrailImageSrc(trail.file_name)
+                  }
+                  onError={() => {
+                    setSrcErr(true);
+                  }}
+                />
               </Grid>
               <Grid xs={12} className={classes.elementsGridContainer}>
                 <div className={classes.elementContainer}>
